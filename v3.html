@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marketer Agency — ครบวงจรการตลาดออนไลน์และออฟไลน์</title>
+<meta name="description" content="Marketer Agency บริษัทรับจัดงานและการตลาดทั้งออนไลน์และออฟไลน์ มืออาชีพ ครบวงจร ประสบการณ์กว่า 10 ปี">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --white:#F7FAFC;
+  --cobalt:#1C3F6E;
+  --cobalt-dark:#0f2540;
+  --cobalt-mid:#2a5a9e;
+  --coral:#FF5252;
+  --coral-dk:#e03e3e;
+  --gray-100:#EEF2F7;
+  --gray-200:#D9E2EC;
+  --gray-400:#9AA5B4;
+  --gray-600:#627D98;
+  --gray-800:#334E68;
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'IBM Plex Sans Thai','Sukhumvit Set',sans-serif;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  font-family:var(--sans);
+  background:var(--white);
+  color:var(--cobalt);
+  line-height:1.8;
+  word-break:break-word;
+  overflow-wrap:break-word;
+  overflow-x:hidden;
+}
+h1,h2,h3,h4{font-family:var(--serif);line-height:1.5;font-weight:700}
+
+/* Remove letter-spacing for Thai */
+html[lang="th"] .label,
+html[lang="th"] .label-sm,
+html[lang="th"] .tag,
+html[lang="th"] .footer__col-title,
+html[lang="th"] .accordion-num,
+html[lang="th"] .work-card__cat,
+html[lang="th"] .stat-item__label,
+html[lang="th"] .form-label{letter-spacing:0 !important}
+
+/* ── NAVBAR ── */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:1.25rem 1.5rem;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:all .35s ease;
+}
+.nav.scrolled{
+  background:rgba(247,250,252,.96);
+  backdrop-filter:blur(14px);
+  padding:.875rem 1.5rem;
+  box-shadow:0 1px 0 var(--gray-200);
+}
+.nav__logo{
+  font-family:var(--serif);font-size:1.3rem;font-weight:900;
+  color:var(--white);text-decoration:none;letter-spacing:-.02em;
+  transition:color .3s;
+}
+.nav.scrolled .nav__logo{color:var(--cobalt)}
+.nav__logo span{color:var(--coral)}
+.nav__links{display:none;list-style:none;gap:2rem;align-items:center}
+.nav__links a{
+  font-size:.78rem;font-weight:500;letter-spacing:.06em;
+  text-decoration:none;color:rgba(247,250,252,.85);
+  text-transform:uppercase;transition:color .2s;
+}
+.nav.scrolled .nav__links a{color:var(--gray-600)}
+.nav__links a:hover,.nav.scrolled .nav__links a:hover{color:var(--coral)}
+.nav__right{display:flex;align-items:center;gap:.85rem}
+.lang-sw{
+  display:flex;align-items:center;gap:.3rem;
+  font-size:.75rem;font-weight:600;
+  color:rgba(247,250,252,.85);
+  background:none;border:1px solid rgba(247,250,252,.35);
+  border-radius:3px;padding:.28rem .55rem;transition:all .2s;
+}
+.nav.scrolled .lang-sw{color:var(--gray-600);border-color:var(--gray-200)}
+.lang-sw:hover{border-color:var(--coral);color:var(--coral)}
+.hamburger{
+  background:none;border:none;cursor:pointer;padding:.25rem;
+  color:var(--white);display:flex;align-items:center;transition:color .3s;
+}
+.nav.scrolled .hamburger{color:var(--cobalt)}
+.menu-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:199;
+  opacity:0;pointer-events:none;transition:opacity .3s;
+}
+.menu-overlay.open{opacity:1;pointer-events:all}
+.mobile-menu{
+  position:fixed;top:0;right:-100%;width:min(310px,85vw);height:100vh;
+  background:var(--cobalt);z-index:200;
+  padding:5rem 2rem 2rem;
+  transition:right .4s cubic-bezier(.25,.46,.45,.94);
+  display:flex;flex-direction:column;
+}
+.mobile-menu.open{right:0}
+.mobile-menu a{
+  font-family:var(--serif);font-size:1.45rem;font-weight:700;
+  color:var(--white);text-decoration:none;
+  padding:.9rem 0;border-bottom:1px solid rgba(247,250,252,.1);
+  transition:color .2s;
+}
+.mobile-menu a:hover{color:var(--coral)}
+.menu-close{
+  position:absolute;top:1.5rem;right:1.5rem;
+  background:none;border:none;color:var(--white);cursor:pointer;
+}
+@media(min-width:768px){
+  .nav__links{display:flex}
+  .hamburger{display:none}
+}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;background:var(--cobalt);
+  position:relative;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding-bottom:5rem;
+}
+.hero__bg{
+  position:absolute;inset:0;
+  background:url('https://images.unsplash.com/photo-1775902087078-ecee948a7c6a?w=1600&h=900&fit=crop') center/cover no-repeat;
+  will-change:transform;
+}
+.hero__bg::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to bottom,rgba(28,63,110,.25) 0%,rgba(28,63,110,.65) 50%,rgba(28,63,110,.93) 100%);
+}
+.hero__content{
+  position:relative;z-index:2;
+  padding:0 1.5rem;max-width:1200px;margin:0 auto;width:100%;
+}
+.hero__eyebrow{
+  display:inline-flex;align-items:center;gap:.6rem;margin-bottom:1.5rem;
+}
+.hero__eyebrow-line{display:inline-block;width:2rem;height:2px;background:var(--coral)}
+.hero__eyebrow-text{
+  font-size:.7rem;font-weight:700;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--coral);
+}
+.hero__h1{
+  font-family:var(--serif);
+  font-size:clamp(2.6rem,8.5vw,6rem);
+  font-weight:900;color:var(--white);
+  line-height:1.1;letter-spacing:-.025em;
+  margin-bottom:1.5rem;max-width:14ch;
+}
+.hero__h1 em{font-style:italic;color:var(--coral)}
+.hero__sub{
+  font-size:1rem;color:rgba(247,250,252,.72);
+  max-width:42ch;margin-bottom:2.5rem;line-height:1.85;
+}
+.hero__ctas{display:flex;flex-direction:column;gap:.9rem;align-items:flex-start}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:.55rem;
+  background:var(--coral);color:var(--white);
+  font-family:var(--sans);font-size:.85rem;font-weight:600;
+  padding:.85em 1.8em;border-radius:2px;
+  text-decoration:none;border:none;cursor:pointer;
+  transition:all .25s ease;min-height:44px;
+}
+.btn-primary:hover{
+  background:var(--coral-dk);transform:translateY(-2px);
+  box-shadow:0 10px 28px rgba(255,82,82,.38);
+}
+.btn-ghost{
+  display:inline-flex;align-items:center;gap:.55rem;
+  background:transparent;color:var(--white);
+  font-family:var(--sans);font-size:.85rem;font-weight:600;
+  padding:.85em 1.8em;border-radius:2px;
+  text-decoration:none;border:1.5px solid rgba(247,250,252,.38);
+  cursor:pointer;transition:all .25s ease;min-height:44px;
+}
+.btn-ghost:hover{border-color:var(--white);background:rgba(247,250,252,.1)}
+.hero::after{
+  content:'';position:absolute;bottom:-1px;left:0;right:0;height:70px;
+  background:var(--white);clip-path:polygon(0 100%,100% 100%,100% 0);
+}
+@media(min-width:768px){
+  .hero__ctas{flex-direction:row;align-items:center}
+  .hero__content{padding:0 3rem}
+}
+
+/* ── MARQUEE ── */
+.marquee{
+  background:var(--white);padding:2.25rem 0;
+  border-top:1px solid var(--gray-200);border-bottom:1px solid var(--gray-200);
+  overflow:hidden;
+}
+.marquee__track{display:flex;gap:3rem;animation:marquee 22s linear infinite;width:max-content}
+.marquee__item{
+  font-family:var(--serif);font-size:.95rem;font-weight:700;
+  color:var(--gray-400);white-space:nowrap;letter-spacing:.04em;
+  text-transform:uppercase;display:flex;align-items:center;gap:1rem;
+}
+.marquee__dot{width:4px;height:4px;background:var(--coral);border-radius:50%}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── SECTION SHARED ── */
+.section{padding:6rem 1.5rem}
+.container{max-width:1200px;margin:0 auto}
+.label{
+  display:block;font-size:.7rem;font-weight:700;
+  letter-spacing:.15em;text-transform:uppercase;color:var(--coral);
+  margin-bottom:.8rem;
+}
+.sec-title{
+  font-family:var(--serif);
+  font-size:clamp(2rem,4.5vw,3rem);
+  font-weight:900;color:var(--cobalt);line-height:1.2;
+}
+
+/* ── EDITORIAL / ABOUT ── */
+.editorial{background:var(--white);padding:6rem 1.5rem}
+.editorial__inner{max-width:1200px;margin:0 auto}
+.editorial__header{
+  border-top:3px solid var(--cobalt);
+  border-bottom:1px solid var(--gray-200);
+  padding:1.25rem 0;margin-bottom:3rem;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;
+}
+.editorial__htitle{
+  font-family:var(--serif);
+  font-size:clamp(2rem,5vw,3.5rem);
+  font-weight:900;color:var(--cobalt);line-height:1.2;
+}
+.editorial__meta{
+  font-size:.68rem;font-weight:600;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--gray-400);
+}
+.editorial__cols{display:grid;grid-template-columns:1fr;gap:2.5rem}
+.editorial__lead{
+  font-family:var(--serif);
+  font-size:clamp(1.1rem,2.2vw,1.35rem);
+  font-weight:400;color:var(--cobalt);line-height:1.75;
+}
+.editorial__body{
+  font-size:.95rem;color:var(--gray-800);
+  line-height:1.9;text-align:justify;
+}
+.editorial__body p+p{margin-top:1rem}
+.editorial__pull{
+  border-left:4px solid var(--coral);
+  padding:1.5rem 1.5rem;
+  background:var(--gray-100);border-radius:0 2px 2px 0;
+}
+.editorial__pull p{
+  font-family:var(--serif);font-size:1.15rem;
+  font-style:italic;color:var(--cobalt);line-height:1.65;
+}
+@media(min-width:900px){
+  .editorial__cols{grid-template-columns:1.8fr 1.4fr 1fr}
+}
+
+/* ── STATS ── */
+.stats{background:var(--cobalt);padding:3.5rem 1.5rem}
+.stats__grid{
+  max-width:1200px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;
+}
+.stat__num{
+  font-family:var(--serif);
+  font-size:clamp(2.5rem,5.5vw,3.75rem);
+  font-weight:900;color:var(--white);
+  line-height:1;letter-spacing:-.03em;
+}
+.stat__num span{color:var(--coral)}
+.stat__lbl{
+  font-size:.72rem;font-weight:600;
+  text-transform:uppercase;letter-spacing:.1em;
+  color:rgba(247,250,252,.55);margin-top:.45rem;
+}
+@media(min-width:640px){.stats__grid{grid-template-columns:repeat(4,1fr)}}
+
+/* ── SERVICES accordion ── */
+.services{background:var(--white);padding:6rem 1.5rem}
+.accordion{border-top:2.5px solid var(--cobalt)}
+.acc-item{border-bottom:1px solid var(--gray-200)}
+.acc-trigger{
+  width:100%;background:none;border:none;cursor:pointer;
+  padding:1.75rem 0;
+  display:flex;align-items:center;gap:1.25rem;text-align:left;
+}
+.acc-num{
+  font-family:var(--serif);font-size:.8rem;font-weight:700;
+  color:var(--coral);min-width:1.75rem;letter-spacing:.05em;
+}
+.acc-title{
+  flex:1;font-family:var(--serif);
+  font-size:clamp(1.05rem,2.2vw,1.4rem);
+  font-weight:700;color:var(--cobalt);line-height:1.45;
+}
+.acc-icon{color:var(--cobalt);transition:transform .3s ease;flex-shrink:0}
+.acc-item.open .acc-icon{transform:rotate(45deg);color:var(--coral)}
+.acc-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s ease}
+.acc-item.open .acc-body{grid-template-rows:1fr}
+.acc-body__inner{overflow:hidden}
+.acc-content{
+  display:grid;grid-template-columns:1fr;gap:2rem;
+  padding-bottom:2.5rem;padding-left:3rem;
+}
+.acc-content p{font-size:.93rem;color:var(--gray-800);line-height:1.9}
+.acc-content img{
+  width:100%;height:220px;object-fit:cover;
+  border-radius:2px;display:block;
+}
+.tags{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:1rem}
+.tag{
+  font-size:.68rem;font-weight:600;
+  text-transform:uppercase;letter-spacing:.07em;
+  padding:.3em .7em;
+  border:1px solid var(--cobalt);color:var(--cobalt);border-radius:1px;
+}
+@media(min-width:768px){
+  .acc-content{grid-template-columns:1fr 1fr}
+  .acc-content img{height:255px}
+}
+
+/* ── PORTFOLIO horizontal scroll ── */
+.portfolio{background:var(--cobalt);padding:6rem 0;overflow:hidden}
+.portfolio__hd{
+  padding:0 1.5rem;max-width:1200px;margin:0 auto 3rem;
+}
+.portfolio__hd .sec-title{color:var(--white)}
+.portfolio__hd .label{color:var(--coral)}
+.pf-scroll{
+  display:flex;gap:1.5rem;overflow-x:auto;
+  padding:0 1.5rem 1.5rem;
+  scrollbar-width:none;-ms-overflow-style:none;
+  scroll-snap-type:x mandatory;
+}
+.pf-scroll::-webkit-scrollbar{display:none}
+.pf-card{
+  flex:0 0 275px;
+  background:rgba(247,250,252,.07);
+  border:1px solid rgba(247,250,252,.12);
+  border-radius:2px;overflow:hidden;
+  scroll-snap-align:start;
+  transition:transform .3s ease,box-shadow .3s ease;
+}
+.pf-card:hover{transform:translateY(-5px);box-shadow:0 18px 42px rgba(0,0,0,.35)}
+.pf-card__img{
+  width:100%;height:190px;object-fit:cover;display:block;
+  filter:grayscale(15%);
+  transition:filter .4s ease,transform .4s ease;
+}
+.pf-card:hover .pf-card__img{filter:grayscale(0);transform:scale(1.04)}
+.pf-card__body{padding:1.25rem}
+.pf-card__cat{
+  font-size:.65rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:.12em;
+  color:var(--coral);margin-bottom:.45rem;
+}
+.pf-card__title{
+  font-family:var(--serif);font-size:1rem;font-weight:700;
+  color:var(--white);line-height:1.45;
+}
+@media(min-width:768px){
+  .pf-card{flex:0 0 350px}
+  .pf-card__img{height:230px}
+}
+
+/* ── SPLIT feature ── */
+.split-sec{background:var(--white);padding:6rem 1.5rem}
+.split-sec__inner{
+  max-width:1200px;margin:0 auto;
+  display:grid;grid-template-columns:1fr;gap:3.5rem;align-items:center;
+}
+.split-sec__img-wrap{position:relative}
+.split-sec__img{
+  width:100%;height:360px;object-fit:cover;
+  border-radius:2px;display:block;position:relative;z-index:1;
+}
+.split-sec__accent{
+  position:absolute;bottom:-1.75rem;right:-1rem;
+  width:55%;height:50%;background:var(--coral);
+  z-index:0;border-radius:2px;
+}
+.split-sec__text .label{margin-bottom:1rem}
+.split-sec__text h2{
+  font-family:var(--serif);
+  font-size:clamp(1.7rem,3.5vw,2.4rem);
+  font-weight:900;color:var(--cobalt);
+  margin-bottom:1.25rem;line-height:1.25;
+}
+.split-sec__text p{color:var(--gray-800);line-height:1.9;margin-bottom:1rem}
+.split-list{list-style:none;margin:1.25rem 0}
+.split-list li{
+  display:flex;align-items:flex-start;gap:.75rem;
+  padding:.7rem 0;border-bottom:1px solid var(--gray-200);
+  font-size:.9rem;color:var(--gray-800);line-height:1.75;
+}
+.split-list li i{color:var(--coral);margin-top:.2rem;flex-shrink:0}
+@media(min-width:900px){
+  .split-sec__inner{grid-template-columns:1fr 1fr}
+}
+
+/* ── PROCESS timeline ── */
+.process{
+  background:var(--gray-100);padding:6rem 1.5rem;
+  position:relative;overflow:hidden;
+}
+.process::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:55px;
+  background:var(--cobalt);clip-path:polygon(0 0,100% 0,100% 100%);
+}
+.process__inner{max-width:1200px;margin:0 auto;position:relative;z-index:1}
+.timeline{margin-top:3rem;position:relative}
+.timeline::before{
+  content:'';position:absolute;left:20px;top:0;bottom:0;
+  width:1px;background:var(--gray-200);
+}
+.tl-step{display:flex;gap:1.5rem;margin-bottom:3rem}
+.tl-dot{
+  flex-shrink:0;width:40px;height:40px;
+  background:var(--cobalt);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--white);font-family:var(--serif);
+  font-size:.82rem;font-weight:700;position:relative;z-index:1;
+}
+.tl-step:nth-child(even) .tl-dot{background:var(--coral)}
+.tl-content{flex:1;padding-top:.4rem}
+.tl-title{
+  font-family:var(--serif);font-size:1.1rem;font-weight:700;
+  color:var(--cobalt);margin-bottom:.45rem;
+}
+.tl-desc{font-size:.9rem;color:var(--gray-800);line-height:1.85}
+
+/* ── TESTIMONIALS ── */
+.testi{background:var(--cobalt);padding:6rem 1.5rem;position:relative;overflow:hidden}
+.testi::before{
+  content:'"';position:absolute;top:-3rem;left:.5rem;
+  font-family:var(--serif);font-size:20rem;
+  color:rgba(247,250,252,.04);line-height:1;pointer-events:none;
+}
+.testi__inner{max-width:1200px;margin:0 auto;position:relative;z-index:1}
+.testi__inner .sec-title{color:var(--white)}
+.testi__inner .label{color:var(--coral)}
+.testi-grid{
+  display:grid;grid-template-columns:1fr;
+  gap:1.5rem;margin-top:3rem;
+}
+.testi-card{
+  background:rgba(247,250,252,.07);
+  border:1px solid rgba(247,250,252,.11);
+  border-radius:2px;padding:2rem;
+  transition:background .3s ease;
+}
+.testi-card:hover{background:rgba(247,250,252,.11)}
+.testi-card__q{
+  font-family:var(--serif);font-size:.98rem;
+  font-style:italic;color:rgba(247,250,252,.9);
+  line-height:1.8;margin-bottom:1.5rem;
+}
+.testi-card__author{display:flex;align-items:center;gap:.75rem}
+.testi-card__av{
+  width:38px;height:38px;border-radius:50%;
+  background:var(--cobalt-mid);flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--white);font-family:var(--serif);font-weight:700;font-size:.85rem;
+}
+.testi-card__name{font-weight:700;font-size:.83rem;color:var(--white)}
+.testi-card__role{font-size:.72rem;color:rgba(247,250,252,.5);margin-top:.12rem}
+@media(min-width:768px){.testi-grid{grid-template-columns:repeat(3,1fr)}}
+
+/* ── CONTACT ── */
+.contact{background:var(--white);padding:6rem 1.5rem}
+.contact__inner{
+  max-width:1200px;margin:0 auto;
+  display:grid;grid-template-columns:1fr;gap:3.5rem;
+}
+.contact__info h2{
+  font-family:var(--serif);
+  font-size:clamp(1.7rem,3.5vw,2.4rem);
+  font-weight:900;color:var(--cobalt);
+  margin-bottom:1rem;line-height:1.25;
+}
+.contact__info p{color:var(--gray-800);margin-bottom:2rem;line-height:1.9}
+.cdetails{display:flex;flex-direction:column;gap:1.1rem}
+.cdetail{display:flex;align-items:flex-start;gap:.75rem}
+.cdetail i{color:var(--coral);margin-top:.15rem;flex-shrink:0}
+.cdetail__lbl{
+  font-size:.65rem;text-transform:uppercase;
+  letter-spacing:.09em;color:var(--gray-400);font-weight:600;
+}
+.cdetail__txt{font-size:.9rem;color:var(--gray-800)}
+.c-form{display:flex;flex-direction:column;gap:1.25rem}
+.form-group{display:flex;flex-direction:column;gap:.4rem}
+.form-label{
+  font-size:.73rem;font-weight:600;
+  text-transform:uppercase;letter-spacing:.08em;color:var(--gray-600);
+}
+.form-group input,
+.form-group textarea,
+.form-group select{
+  font-family:var(--sans);font-size:.95rem;
+  padding:.875rem 1rem;
+  border:1.5px solid var(--gray-200);
+  background:var(--white);color:var(--cobalt);
+  border-radius:2px;outline:none;
+  transition:border-color .2s;min-height:44px;
+  line-height:1.8;width:100%;
+}
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus{border-color:var(--cobalt)}
+.form-group textarea{min-height:120px;resize:vertical}
+.btn-full{width:100%;justify-content:center}
+@media(min-width:900px){.contact__inner{grid-template-columns:1fr 1.5fr}}
+
+/* ── FOOTER ── */
+.footer{background:var(--cobalt-dark);padding:4.5rem 1.5rem 2rem}
+.footer__inner{max-width:1200px;margin:0 auto}
+.footer__top{
+  display:grid;grid-template-columns:1fr;gap:2.5rem;
+  margin-bottom:3rem;padding-bottom:3rem;
+  border-bottom:1px solid rgba(247,250,252,.1);
+}
+.footer__brand{
+  font-family:var(--serif);font-size:1.45rem;
+  font-weight:900;color:var(--white);
+}
+.footer__brand span{color:var(--coral)}
+.footer__tagline{
+  font-size:.85rem;color:rgba(247,250,252,.5);
+  margin-top:.7rem;line-height:1.8;
+}
+.footer__coltitle{
+  font-size:.68rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:.12em;
+  color:rgba(247,250,252,.4);margin-bottom:.9rem;
+}
+.footer__links{list-style:none;display:flex;flex-direction:column;gap:.55rem}
+.footer__links a{
+  font-size:.88rem;color:rgba(247,250,252,.68);
+  text-decoration:none;transition:color .2s;
+}
+.footer__links a:hover{color:var(--coral)}
+.footer__social{display:flex;gap:.7rem;margin-top:1.25rem}
+.footer__social a{
+  width:36px;height:36px;border:1px solid rgba(247,250,252,.16);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  color:rgba(247,250,252,.55);text-decoration:none;transition:all .2s;
+}
+.footer__social a:hover{
+  border-color:var(--coral);color:var(--coral);
+  background:rgba(255,82,82,.1);
+}
+.footer__bottom{
+  display:flex;flex-direction:column;gap:.6rem;
+}
+.footer__copy{font-size:.73rem;color:rgba(247,250,252,.3)}
+@media(min-width:768px){
+  .footer__top{grid-template-columns:1.5fr 1fr 1fr 1fr}
+  .footer__bottom{flex-direction:row;justify-content:space-between;align-items:center}
+}
+
+/* ── ANIMATIONS ── */
+.reveal{
+  opacity:0;transform:translateY(28px);
+  transition:opacity .65s ease-out,transform .65s ease-out;
+}
+.reveal.visible{opacity:1;transform:none}
+.rd1{transition-delay:.1s}
+.rd2{transition-delay:.2s}
+.rd3{transition-delay:.3s}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="nav" id="navbar">
+  <a href="#" class="nav__logo">Marketer<span>.</span></a>
+  <ul class="nav__links">
+    <li><a href="#services" data-lang-th="บริการ" data-lang-en="Services">บริการ</a></li>
+    <li><a href="#portfolio" data-lang-th="ผลงาน" data-lang-en="Portfolio">ผลงาน</a></li>
+    <li><a href="#process" data-lang-th="กระบวนการ" data-lang-en="Process">กระบวนการ</a></li>
+    <li><a href="#contact" data-lang-th="ติดต่อ" data-lang-en="Contact">ติดต่อ</a></li>
+  </ul>
+  <div class="nav__right">
+    <div class="lang-sw">
+      <i data-lucide="globe" width="14" height="14"></i>
+      <span class="lang-sw__label">TH</span>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <i data-lucide="menu" width="22" height="22"></i>
+    </button>
+  </div>
+</nav>
+
+<div class="menu-overlay" id="menuOverlay"></div>
+<div class="mobile-menu" id="mobileMenu">
+  <button class="menu-close" id="menuClose"><i data-lucide="x" width="24" height="24"></i></button>
+  <a href="#services" data-lang-th="บริการ" data-lang-en="Services">บริการ</a>
+  <a href="#portfolio" data-lang-th="ผลงาน" data-lang-en="Portfolio">ผลงาน</a>
+  <a href="#process" data-lang-th="กระบวนการ" data-lang-en="Process">กระบวนการ</a>
+  <a href="#about" data-lang-th="เกี่ยวกับเรา" data-lang-en="About">เกี่ยวกับเรา</a>
+  <a href="#contact" data-lang-th="ติดต่อเรา" data-lang-en="Contact Us">ติดต่อเรา</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero__bg" id="heroBg"></div>
+  <div class="hero__content">
+    <div class="hero__eyebrow">
+      <span class="hero__eyebrow-line"></span>
+      <span class="hero__eyebrow-text" data-lang-th="การตลาดครบวงจร" data-lang-en="Full-Service Marketing">การตลาดครบวงจร</span>
+    </div>
+    <h1 class="hero__h1">
+      <span data-lang-th="สร้างแบรนด์ที่" data-lang-en="Marketing That">สร้างแบรนด์ที่</span>
+      <em data-lang-th="ทรงพลัง" data-lang-en="Moves People">ทรงพลัง</em>
+      <br>
+      <span data-lang-th="ด้วยกลยุทธ์แม่นยำ" data-lang-en="Precisely Engineered">ด้วยกลยุทธ์แม่นยำ</span>
+    </h1>
+    <p class="hero__sub" data-lang-th="เชี่ยวชาญการตลาดออนไลน์และออฟไลน์ พร้อมรับจัดงานครบวงจร ด้วยประสบการณ์กว่า 10 ปีในอุตสาหกรรม" data-lang-en="Integrated online and offline marketing with full-service event management — 10 years of industry expertise behind every campaign.">เชี่ยวชาญการตลาดออนไลน์และออฟไลน์ พร้อมรับจัดงานครบวงจร ด้วยประสบการณ์กว่า 10 ปีในอุตสาหกรรม</p>
+    <div class="hero__ctas">
+      <a href="#contact" class="btn-primary">
+        <i data-lucide="send" width="16" height="16"></i>
+        <span data-lang-th="ปรึกษาฟรี" data-lang-en="Free Consultation">ปรึกษาฟรี</span>
+      </a>
+      <a href="#portfolio" class="btn-ghost">
+        <span data-lang-th="ดูผลงาน" data-lang-en="See Our Work">ดูผลงาน</span>
+        <i data-lucide="arrow-right" width="16" height="16"></i>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee__track">
+    <div class="marquee__item">Central Group<span class="marquee__dot"></span></div>
+    <div class="marquee__item">SCG<span class="marquee__dot"></span></div>
+    <div class="marquee__item">True Corporation<span class="marquee__dot"></span></div>
+    <div class="marquee__item">Kasikorn Bank<span class="marquee__dot"></span></div>
+    <div class="marquee__item">Minor International<span class="marquee__dot"></span></div>
+    <div class="marquee__item">PTT Global<span class="marquee__dot"></span></div>
+    <div class="marquee__item">Charoen Pokphand<span class="marquee__dot"></span></div>
+    <div class="marquee__item">Siam Piwat<span class="marquee__dot"></span></div>
+    <div class="marquee__item">Central Group<span class="marquee__dot"></span></div>
+    <div class="marquee__item">SCG<span class="marquee__dot"></span></div>
+    <div class="marquee__item">True Corporation<span class="marquee__dot"></span></div>
+    <div class="marquee__item">Kasikorn Bank<span class="marquee__dot"></span></div>
+    <div class="marquee__item">Minor International<span class="marquee__dot"></span></div>
+    <div class="marquee__item">PTT Global<span class="marquee__dot"></span></div>
+    <div class="marquee__item">Charoen Pokphand<span class="marquee__dot"></span></div>
+    <div class="marquee__item">Siam Piwat<span class="marquee__dot"></span></div>
+  </div>
+</div>
+
+<!-- EDITORIAL / ABOUT -->
+<section class="editorial" id="about">
+  <div class="editorial__inner">
+    <div class="editorial__header">
+      <h2 class="editorial__htitle" data-lang-th="เกี่ยวกับเรา" data-lang-en="About Marketer">เกี่ยวกับเรา</h2>
+      <span class="editorial__meta" data-lang-th="ก่อตั้ง พ.ศ. 2557" data-lang-en="Est. 2014">ก่อตั้ง พ.ศ. 2557</span>
+    </div>
+    <div class="editorial__cols">
+      <p class="editorial__lead reveal" data-lang-th="Marketer Agency คือพาร์ทเนอร์การตลาดที่คุณวางใจได้ ครอบคลุมทุกมิติตั้งแต่กลยุทธ์ดิจิทัล แคมเปญโซเชียล ไปจนถึงการจัดงานระดับมืออาชีพ" data-lang-en="Marketer Agency is your trusted marketing partner across every dimension — from digital strategy and social campaigns to world-class event production.">Marketer Agency คือพาร์ทเนอร์การตลาดที่คุณวางใจได้ ครอบคลุมทุกมิติตั้งแต่กลยุทธ์ดิจิทัล แคมเปญโซเชียล ไปจนถึงการจัดงานระดับมืออาชีพ</p>
+      <div class="editorial__body reveal rd1">
+        <p data-lang-th="เราเชื่อว่าการตลาดที่ดีเกิดจากความเข้าใจแบรนด์อย่างลึกซึ้ง และการผสมผสานช่องทางออนไลน์กับออฟไลน์ได้อย่างราบรื่น ทีมงานผู้เชี่ยวชาญของเราพร้อมออกแบบแคมเปญที่ตรงเป้าหมาย วัดผลได้จริง" data-lang-en="We believe great marketing comes from deep brand understanding and seamlessly blending online and offline channels. Our expert team designs targeted, measurable campaigns that drive real results.">เราเชื่อว่าการตลาดที่ดีเกิดจากความเข้าใจแบรนด์อย่างลึกซึ้ง และการผสมผสานช่องทางออนไลน์กับออฟไลน์ได้อย่างราบรื่น ทีมงานผู้เชี่ยวชาญของเราพร้อมออกแบบแคมเปญที่ตรงเป้าหมาย วัดผลได้จริง</p>
+        <p data-lang-th="ตลอด 10 ปีที่ผ่านมา เราได้ร่วมงานกับแบรนด์ชั้นนำทั้งในและต่างประเทศ สร้างผลลัพธ์ที่เกินความคาดหวังในทุกโปรเจกต์" data-lang-en="Over 10 years we have partnered with leading brands domestically and internationally, delivering results that consistently exceed expectations on every project.">ตลอด 10 ปีที่ผ่านมา เราได้ร่วมงานกับแบรนด์ชั้นนำทั้งในและต่างประเทศ สร้างผลลัพธ์ที่เกินความคาดหวังในทุกโปรเจกต์</p>
+      </div>
+      <div class="editorial__pull reveal rd2">
+        <p data-lang-th='"ทุกแคมเปญที่เราสร้าง คือเรื่องราวที่เชื่อมแบรนด์เข้าหาคนจริงๆ"' data-lang-en='"Every campaign we build is a story that connects your brand to real people."'>"ทุกแคมเปญที่เราสร้าง คือเรื่องราวที่เชื่อมแบรนด์เข้าหาคนจริงๆ"</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stats__grid">
+    <div class="reveal">
+      <div class="stat__num">500<span>+</span></div>
+      <div class="stat__lbl" data-lang-th="โปรเจกต์สำเร็จ" data-lang-en="Projects Completed">โปรเจกต์สำเร็จ</div>
+    </div>
+    <div class="reveal rd1">
+      <div class="stat__num">10<span>ปี</span></div>
+      <div class="stat__lbl" data-lang-th="ประสบการณ์" data-lang-en="Years Experience">ประสบการณ์</div>
+    </div>
+    <div class="reveal rd2">
+      <div class="stat__num">120<span>+</span></div>
+      <div class="stat__lbl" data-lang-th="แบรนด์ที่ไว้วางใจ" data-lang-en="Trusted Brands">แบรนด์ที่ไว้วางใจ</div>
+    </div>
+    <div class="reveal rd3">
+      <div class="stat__num">98<span>%</span></div>
+      <div class="stat__lbl" data-lang-th="ลูกค้ากลับมาใช้ซ้ำ" data-lang-en="Client Retention">ลูกค้ากลับมาใช้ซ้ำ</div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="reveal" style="margin-bottom:3.5rem">
+      <span class="label" data-lang-th="บริการของเรา" data-lang-en="Our Services">บริการของเรา</span>
+      <h2 class="sec-title" data-lang-th="ครบทุกมิติการตลาด" data-lang-en="Complete Marketing Solutions">ครบทุกมิติการตลาด</h2>
+    </div>
+    <div class="accordion">
+
+      <div class="acc-item open" id="acc1">
+        <button class="acc-trigger" onclick="toggleAcc('acc1')">
+          <span class="acc-num">01</span>
+          <span class="acc-title">Digital Marketing &amp; Social Media</span>
+          <span class="acc-icon"><i data-lucide="plus" width="20" height="20"></i></span>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body__inner">
+            <div class="acc-content">
+              <div>
+                <p data-lang-th="ออกแบบและดำเนินกลยุทธ์ดิจิทัลแบบครบวงจร ครอบคลุม Facebook, Instagram, TikTok, LINE OA และ Google Ads วิเคราะห์ข้อมูลเชิงลึก วัดผลได้จริงในทุกแคมเปญ" data-lang-en="End-to-end digital strategy across Facebook, Instagram, TikTok, LINE OA, and Google Ads — with deep analytics and measurable outcomes on every campaign.">ออกแบบและดำเนินกลยุทธ์ดิจิทัลแบบครบวงจร ครอบคลุม Facebook, Instagram, TikTok, LINE OA และ Google Ads วิเคราะห์ข้อมูลเชิงลึก วัดผลได้จริงในทุกแคมเปญ</p>
+                <div class="tags">
+                  <span class="tag">SEO / SEM</span>
+                  <span class="tag">Social Ads</span>
+                  <span class="tag">Content</span>
+                  <span class="tag">Analytics</span>
+                </div>
+              </div>
+              <img src="https://images.unsplash.com/photo-1562577309-4932fdd64cd1?w=600&h=360&fit=crop" alt="Social media marketing strategy" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item" id="acc2">
+        <button class="acc-trigger" onclick="toggleAcc('acc2')">
+          <span class="acc-num">02</span>
+          <span class="acc-title">Event Management &amp; Production</span>
+          <span class="acc-icon"><i data-lucide="plus" width="20" height="20"></i></span>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body__inner">
+            <div class="acc-content">
+              <div>
+                <p data-lang-th="รับจัดงานครบวงจร ตั้งแต่ Corporate Event, Product Launch, สัมมนา ไปจนถึง Exhibition ขนาดใหญ่ ดูแลทุกขั้นตอนตั้งแต่ Concept จนจบงาน" data-lang-en="Full-scale event production — corporate events, product launches, seminars, and large exhibitions. We manage every detail from concept through wrap-up.">รับจัดงานครบวงจร ตั้งแต่ Corporate Event, Product Launch, สัมมนา ไปจนถึง Exhibition ขนาดใหญ่ ดูแลทุกขั้นตอนตั้งแต่ Concept จนจบงาน</p>
+                <div class="tags">
+                  <span class="tag">Corporate Event</span>
+                  <span class="tag">Product Launch</span>
+                  <span class="tag">Exhibition</span>
+                </div>
+              </div>
+              <img src="https://images.unsplash.com/photo-1775902087078-ecee948a7c6a?w=600&h=360&fit=crop" alt="Corporate event crowd" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item" id="acc3">
+        <button class="acc-trigger" onclick="toggleAcc('acc3')">
+          <span class="acc-num">03</span>
+          <span class="acc-title">Brand Strategy &amp; Creative</span>
+          <span class="acc-icon"><i data-lucide="plus" width="20" height="20"></i></span>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body__inner">
+            <div class="acc-content">
+              <div>
+                <p data-lang-th="พัฒนาเอกลักษณ์แบรนด์ตั้งแต่ต้น วางกลยุทธ์การสื่อสาร ออกแบบ Visual Identity และสร้างสรรค์คอนเทนต์ที่สอดคล้องกับตัวตนของแบรนด์คุณ" data-lang-en="Build brand identity from the ground up — communication strategy, Visual Identity design, and content creation that authentically reflects your brand voice.">พัฒนาเอกลักษณ์แบรนด์ตั้งแต่ต้น วางกลยุทธ์การสื่อสาร ออกแบบ Visual Identity และสร้างสรรค์คอนเทนต์ที่สอดคล้องกับตัวตนของแบรนด์คุณ</p>
+                <div class="tags">
+                  <span class="tag">Branding</span>
+                  <span class="tag">Identity</span>
+                  <span class="tag">Creative</span>
+                </div>
+              </div>
+              <img src="https://images.unsplash.com/photo-1769798643582-32ef781c45d8?w=600&h=360&fit=crop" alt="Brand panel discussion" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item" id="acc4">
+        <button class="acc-trigger" onclick="toggleAcc('acc4')">
+          <span class="acc-num">04</span>
+          <span class="acc-title">Influencer &amp; PR Marketing</span>
+          <span class="acc-icon"><i data-lucide="plus" width="20" height="20"></i></span>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body__inner">
+            <div class="acc-content">
+              <div>
+                <p data-lang-th="เชื่อมต่อแบรนด์คุณกับ Influencer และ KOL ที่เหมาะสม พร้อมบริหารจัดการ PR ทั้งสื่อออนไลน์และออฟไลน์ สร้างกระแสและความน่าเชื่อถือให้แบรนด์" data-lang-en="Connect your brand with the right influencers and KOLs, and manage PR across both online and offline media — building lasting buzz and credibility.">เชื่อมต่อแบรนด์คุณกับ Influencer และ KOL ที่เหมาะสม พร้อมบริหารจัดการ PR ทั้งสื่อออนไลน์และออฟไลน์ สร้างกระแสและความน่าเชื่อถือให้แบรนด์</p>
+                <div class="tags">
+                  <span class="tag">KOL</span>
+                  <span class="tag">Influencer</span>
+                  <span class="tag">PR</span>
+                  <span class="tag">Media</span>
+                </div>
+              </div>
+              <img src="https://images.unsplash.com/photo-1572021335469-31706a17aaef?w=600&h=360&fit=crop" alt="Team collaboration" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="portfolio" id="portfolio">
+  <div class="portfolio__hd">
+    <span class="label" data-lang-th="ผลงานของเรา" data-lang-en="Our Work">ผลงานของเรา</span>
+    <h2 class="sec-title" data-lang-th="โปรเจกต์ที่ภาคภูมิใจ" data-lang-en="Selected Projects">โปรเจกต์ที่ภาคภูมิใจ</h2>
+  </div>
+  <div class="pf-scroll">
+    <div class="pf-card reveal">
+      <img class="pf-card__img" src="https://images.unsplash.com/photo-1769798643655-e0f10f62c3fd?w=700&h=460&fit=crop" alt="Brand launch event presentation" loading="lazy">
+      <div class="pf-card__body">
+        <div class="pf-card__cat" data-lang-th="จัดงาน" data-lang-en="Event">จัดงาน</div>
+        <div class="pf-card__title" data-lang-th="Product Launch ยักษ์ใหญ่เทคโนโลยี กรุงเทพฯ 2566" data-lang-en="Major Tech Product Launch Bangkok 2023">Product Launch ยักษ์ใหญ่เทคโนโลยี กรุงเทพฯ 2566</div>
+      </div>
+    </div>
+    <div class="pf-card reveal rd1">
+      <img class="pf-card__img" src="https://images.unsplash.com/photo-1582192730841-2a682d7375f9?w=700&h=460&fit=crop" alt="Corporate presentation screen" loading="lazy">
+      <div class="pf-card__body">
+        <div class="pf-card__cat" data-lang-th="การตลาดดิจิทัล" data-lang-en="Digital Marketing">การตลาดดิจิทัล</div>
+        <div class="pf-card__title" data-lang-th="แคมเปญ Social 360° แบรนด์ Beauty ยอดวิว 30M" data-lang-en="360° Social Campaign for Beauty Brand — 30M Views">แคมเปญ Social 360° แบรนด์ Beauty ยอดวิว 30M</div>
+      </div>
+    </div>
+    <div class="pf-card reveal rd2">
+      <img class="pf-card__img" src="https://images.unsplash.com/photo-1571645163064-77faa9676a46?w=700&h=460&fit=crop" alt="Seminar audience" loading="lazy">
+      <div class="pf-card__body">
+        <div class="pf-card__cat" data-lang-th="สัมมนา" data-lang-en="Seminar">สัมมนา</div>
+        <div class="pf-card__title" data-lang-th="สัมมนาผู้นำธุรกิจประจำปี 1,200+ คน" data-lang-en="Annual Business Leaders Forum — 1,200+ Attendees">สัมมนาผู้นำธุรกิจประจำปี 1,200+ คน</div>
+      </div>
+    </div>
+    <div class="pf-card reveal rd3">
+      <img class="pf-card__img" src="https://images.unsplash.com/photo-1690378820474-b468b8ee64d3?w=700&h=460&fit=crop" alt="Team collaboration laptops" loading="lazy">
+      <div class="pf-card__body">
+        <div class="pf-card__cat" data-lang-th="Influencer" data-lang-en="Influencer">Influencer</div>
+        <div class="pf-card__title" data-lang-th="แคมเปญ KOL เปิดตัว FMCG รวม 50 ล้านวิว" data-lang-en="FMCG KOL Launch Campaign — 50M Total Views">แคมเปญ KOL เปิดตัว FMCG รวม 50 ล้านวิว</div>
+      </div>
+    </div>
+    <div class="pf-card">
+      <img class="pf-card__img" src="https://images.unsplash.com/photo-1627931539006-d5c4677e05ea?w=700&h=460&fit=crop" alt="Speaker at corporate event" loading="lazy">
+      <div class="pf-card__body">
+        <div class="pf-card__cat" data-lang-th="แบรนด์" data-lang-en="Branding">แบรนด์</div>
+        <div class="pf-card__title" data-lang-th="Rebranding สมบูรณ์แบบสำหรับกลุ่มธุรกิจอาหาร" data-lang-en="Complete Rebranding for F&amp;B Group">Rebranding สมบูรณ์แบบสำหรับกลุ่มธุรกิจอาหาร</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPLIT FEATURE -->
+<section class="split-sec">
+  <div class="split-sec__inner container">
+    <div class="split-sec__img-wrap">
+      <img class="split-sec__img" src="https://images.unsplash.com/photo-1603201667230-bd139210db18?w=800&h=700&fit=crop" alt="Agency team collaborating" loading="lazy">
+      <div class="split-sec__accent"></div>
+    </div>
+    <div class="split-sec__text reveal">
+      <span class="label" data-lang-th="แนวทางของเรา" data-lang-en="Our Approach">แนวทางของเรา</span>
+      <h2 data-lang-th="Data-Driven + Human Insight คือผลลัพธ์ที่แท้จริง" data-lang-en="Data-Driven + Human Insight = Real Results">Data-Driven + Human Insight คือผลลัพธ์ที่แท้จริง</h2>
+      <p data-lang-th="เราไม่ใช้สูตรสำเร็จ ทุกแคมเปญเริ่มจากการทำความเข้าใจแบรนด์ กลุ่มเป้าหมาย และบริบทตลาดอย่างถ่องแท้ ก่อนออกแบบกลยุทธ์ที่เหมาะสมที่สุด" data-lang-en="We use no templates. Every campaign starts with deep understanding of your brand, audience, and market context before we design the right strategy.">เราไม่ใช้สูตรสำเร็จ ทุกแคมเปญเริ่มจากการทำความเข้าใจแบรนด์ กลุ่มเป้าหมาย และบริบทตลาดอย่างถ่องแท้ ก่อนออกแบบกลยุทธ์ที่เหมาะสมที่สุด</p>
+      <ul class="split-list">
+        <li>
+          <i data-lucide="check-circle" width="18" height="18"></i>
+          <span data-lang-th="วิเคราะห์ข้อมูลเชิงลึกก่อนวางแผน" data-lang-en="Deep data analysis before every plan">วิเคราะห์ข้อมูลเชิงลึกก่อนวางแผน</span>
+        </li>
+        <li>
+          <i data-lucide="check-circle" width="18" height="18"></i>
+          <span data-lang-th="ทีมงานครบทุกสาขา ออนไลน์และออฟไลน์" data-lang-en="Full-spectrum team, online and offline">ทีมงานครบทุกสาขา ออนไลน์และออฟไลน์</span>
+        </li>
+        <li>
+          <i data-lucide="check-circle" width="18" height="18"></i>
+          <span data-lang-th="รายงานผลแบบ Real-time โปร่งใส 100%" data-lang-en="100% transparent real-time reporting">รายงานผลแบบ Real-time โปร่งใส 100%</span>
+        </li>
+        <li>
+          <i data-lucide="check-circle" width="18" height="18"></i>
+          <span data-lang-th="ปรับกลยุทธ์ตามผลลัพธ์ได้ทันที" data-lang-en="Agile strategy adjustment by results">ปรับกลยุทธ์ตามผลลัพธ์ได้ทันที</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="process__inner">
+    <div class="reveal" style="margin-bottom:0">
+      <span class="label" data-lang-th="ขั้นตอนการทำงาน" data-lang-en="How We Work">ขั้นตอนการทำงาน</span>
+      <h2 class="sec-title" data-lang-th="กระบวนการที่พิสูจน์แล้ว" data-lang-en="A Proven Process">กระบวนการที่พิสูจน์แล้ว</h2>
+    </div>
+    <div class="timeline">
+      <div class="tl-step reveal">
+        <div class="tl-dot">01</div>
+        <div class="tl-content">
+          <div class="tl-title">Discovery &amp; Brief</div>
+          <p class="tl-desc" data-lang-th="เริ่มต้นด้วยการนัดคุย ทำความเข้าใจแบรนด์ วัตถุประสงค์ กลุ่มเป้าหมาย และงบประมาณอย่างละเอียด" data-lang-en="We start with a deep-dive meeting to understand your brand, objectives, target audience, and budget before anything else.">เริ่มต้นด้วยการนัดคุย ทำความเข้าใจแบรนด์ วัตถุประสงค์ กลุ่มเป้าหมาย และงบประมาณอย่างละเอียด</p>
+        </div>
+      </div>
+      <div class="tl-step reveal rd1">
+        <div class="tl-dot">02</div>
+        <div class="tl-content">
+          <div class="tl-title">Strategy &amp; Planning</div>
+          <p class="tl-desc" data-lang-th="ทีมกลยุทธ์ออกแบบแผนการตลาดครอบคลุมทุกช่องทาง พร้อม Timeline และ KPI ที่ชัดเจน" data-lang-en="Our strategy team designs a comprehensive marketing plan across all channels, with clear timelines and measurable KPIs.">ทีมกลยุทธ์ออกแบบแผนการตลาดครอบคลุมทุกช่องทาง พร้อม Timeline และ KPI ที่ชัดเจน</p>
+        </div>
+      </div>
+      <div class="tl-step reveal rd2">
+        <div class="tl-dot">03</div>
+        <div class="tl-content">
+          <div class="tl-title">Creative &amp; Production</div>
+          <p class="tl-desc" data-lang-th="สร้างสรรค์คอนเทนต์ ออกแบบ Artwork และผลิตสื่อทุกรูปแบบให้สอดคล้องกับกลยุทธ์" data-lang-en="Create content, design artwork, and produce media across every format — all precisely aligned with your strategy.">สร้างสรรค์คอนเทนต์ ออกแบบ Artwork และผลิตสื่อทุกรูปแบบให้สอดคล้องกับกลยุทธ์</p>
+        </div>
+      </div>
+      <div class="tl-step reveal rd3">
+        <div class="tl-dot">04</div>
+        <div class="tl-content">
+          <div class="tl-title">Launch &amp; Execution</div>
+          <p class="tl-desc" data-lang-th="ดำเนินการตามแผน บริหารจัดการแคมเปญและงาน Event อย่างมืออาชีพ ตรงเวลา ตรงเป้าหมาย" data-lang-en="Execute the plan, manage campaigns, and run events with precision and professionalism — on time, on target.">ดำเนินการตามแผน บริหารจัดการแคมเปญและงาน Event อย่างมืออาชีพ ตรงเวลา ตรงเป้าหมาย</p>
+        </div>
+      </div>
+      <div class="tl-step reveal">
+        <div class="tl-dot">05</div>
+        <div class="tl-content">
+          <div class="tl-title">Measure &amp; Optimize</div>
+          <p class="tl-desc" data-lang-th="ติดตามผลแบบ Real-time วิเคราะห์ข้อมูล และปรับกลยุทธ์เพื่อผลลัพธ์ที่ดีที่สุด" data-lang-en="Track results in real-time, analyse data, and continuously optimize strategy for the best possible outcomes.">ติดตามผลแบบ Real-time วิเคราะห์ข้อมูล และปรับกลยุทธ์เพื่อผลลัพธ์ที่ดีที่สุด</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi" id="testimonials">
+  <div class="testi__inner">
+    <div class="reveal">
+      <span class="label" data-lang-th="เสียงจากลูกค้า" data-lang-en="Client Voices">เสียงจากลูกค้า</span>
+      <h2 class="sec-title" data-lang-th="ที่ลูกค้าพูดถึงเรา" data-lang-en="What Clients Say">ที่ลูกค้าพูดถึงเรา</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <p class="testi-card__q" data-lang-th='"Marketer Agency เปลี่ยนวิธีที่แบรนด์เราสื่อสารกับลูกค้าโดยสิ้นเชิง ยอดขายเพิ่มขึ้น 40% ภายในแคมเปญแรก"' data-lang-en='"Marketer Agency completely transformed how our brand communicates. Sales grew 40% within the very first campaign."'>"Marketer Agency เปลี่ยนวิธีที่แบรนด์เราสื่อสารกับลูกค้าโดยสิ้นเชิง ยอดขายเพิ่มขึ้น 40% ภายในแคมเปญแรก"</p>
+        <div class="testi-card__author">
+          <div class="testi-card__av">สม</div>
+          <div>
+            <div class="testi-card__name" data-lang-th="คุณสมชาย วงศ์ประเสริฐ" data-lang-en="Somchai Wongprasert">คุณสมชาย วงศ์ประเสริฐ</div>
+            <div class="testi-card__role" data-lang-th="CMO, Thai Commerce Group" data-lang-en="CMO, Thai Commerce Group">CMO, Thai Commerce Group</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal rd1">
+        <p class="testi-card__q" data-lang-th='"งาน Product Launch ที่พวกเขาจัดให้เราสมบูรณ์แบบมาก ทั้งการดำเนินงานและการสื่อสารบนโซเชียล ยอดวิวรวมเกิน 10 ล้านวิว"' data-lang-en='"The product launch they delivered was flawless — operationally and on social. Total reach exceeded 10 million views."'>"งาน Product Launch ที่พวกเขาจัดให้เราสมบูรณ์แบบมาก ทั้งการดำเนินงานและการสื่อสารบนโซเชียล ยอดวิวรวมเกิน 10 ล้านวิว"</p>
+        <div class="testi-card__author">
+          <div class="testi-card__av">นา</div>
+          <div>
+            <div class="testi-card__name" data-lang-th="คุณนาถ อนุสรณ์" data-lang-en="Nath Anusorn">คุณนาถ อนุสรณ์</div>
+            <div class="testi-card__role" data-lang-th="Brand Director, Beauty Conglomerate" data-lang-en="Brand Director, Beauty Conglomerate">Brand Director, Beauty Conglomerate</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal rd2">
+        <p class="testi-card__q" data-lang-th='"ทีมงานมืออาชีพ เข้าใจ Brief ตรงประเด็น ส่งงานตรงเวลา ผลลัพธ์เกินคาดทุกครั้ง ร่วมงานกันมากว่า 5 ปีแล้ว"' data-lang-en='"Professional team, spot-on briefs, always on time. Results exceed expectations every time. Over 5 years and still going."'>"ทีมงานมืออาชีพ เข้าใจ Brief ตรงประเด็น ส่งงานตรงเวลา ผลลัพธ์เกินคาดทุกครั้ง ร่วมงานกันมากว่า 5 ปีแล้ว"</p>
+        <div class="testi-card__author">
+          <div class="testi-card__av">รุ</div>
+          <div>
+            <div class="testi-card__name" data-lang-th="คุณรุ่งทิวา ชัยเจริญ" data-lang-en="Rungtiva Chaicharoen">คุณรุ่งทิวา ชัยเจริญ</div>
+            <div class="testi-card__role" data-lang-th="Marketing Manager, FMCG Group" data-lang-en="Marketing Manager, FMCG Group">Marketing Manager, FMCG Group</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact__inner container">
+    <div class="reveal">
+      <span class="label" data-lang-th="ติดต่อเรา" data-lang-en="Get In Touch">ติดต่อเรา</span>
+      <h2 data-lang-th="พร้อมให้คำปรึกษา ไม่มีค่าใช้จ่าย" data-lang-en="Ready to Consult — At No Charge">พร้อมให้คำปรึกษา ไม่มีค่าใช้จ่าย</h2>
+      <p data-lang-th="ส่งข้อความมาหาเราเพื่อนัดหมายพูดคุย หรือรับ Proposal เบื้องต้นฟรี ทีมงานพร้อมตอบกลับภายใน 24 ชั่วโมง" data-lang-en="Send us a message to schedule a call or receive a free initial proposal. Our team responds within 24 hours.">ส่งข้อความมาหาเราเพื่อนัดหมายพูดคุย หรือรับ Proposal เบื้องต้นฟรี ทีมงานพร้อมตอบกลับภายใน 24 ชั่วโมง</p>
+      <div class="cdetails">
+        <div class="cdetail">
+          <i data-lucide="map-pin" width="18" height="18"></i>
+          <div>
+            <div class="cdetail__lbl" data-lang-th="ที่อยู่" data-lang-en="Address">ที่อยู่</div>
+            <div class="cdetail__txt" data-lang-th="อาคาร Park Ventures ชั้น 12 ถ.วิทยุ กรุงเทพฯ 10330" data-lang-en="Park Ventures Building, 12F, Wireless Rd, Bangkok 10330">อาคาร Park Ventures ชั้น 12 ถ.วิทยุ กรุงเทพฯ 10330</div>
+          </div>
+        </div>
+        <div class="cdetail">
+          <i data-lucide="phone" width="18" height="18"></i>
+          <div>
+            <div class="cdetail__lbl" data-lang-th="โทรศัพท์" data-lang-en="Phone">โทรศัพท์</div>
+            <div class="cdetail__txt">+66 2 123 4567</div>
+          </div>
+        </div>
+        <div class="cdetail">
+          <i data-lucide="mail" width="18" height="18"></i>
+          <div>
+            <div class="cdetail__lbl" data-lang-th="อีเมล" data-lang-en="Email">อีเมล</div>
+            <div class="cdetail__txt">hello@marketeragency.co.th</div>
+          </div>
+        </div>
+        <div class="cdetail">
+          <i data-lucide="clock" width="18" height="18"></i>
+          <div>
+            <div class="cdetail__lbl" data-lang-th="เวลาทำการ" data-lang-en="Hours">เวลาทำการ</div>
+            <div class="cdetail__txt" data-lang-th="จันทร์–ศุกร์ 09:00–18:00" data-lang-en="Monday–Friday 09:00–18:00">จันทร์–ศุกร์ 09:00–18:00</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <form class="c-form reveal rd1" onsubmit="return false">
+      <div class="form-group">
+        <label class="form-label" for="f-name" data-lang-th="ชื่อ–นามสกุล" data-lang-en="Full Name">ชื่อ–นามสกุล</label>
+        <input type="text" id="f-name">
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="f-company" data-lang-th="บริษัท / แบรนด์" data-lang-en="Company / Brand">บริษัท / แบรนด์</label>
+        <input type="text" id="f-company">
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="f-email" data-lang-th="อีเมล" data-lang-en="Email">อีเมล</label>
+        <input type="email" id="f-email">
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="f-service" data-lang-th="บริการที่สนใจ" data-lang-en="Service of Interest">บริการที่สนใจ</label>
+        <select id="f-service">
+          <option value="" data-lang-th="— กรุณาเลือก —" data-lang-en="— Please select —">— กรุณาเลือก —</option>
+          <option value="digital">Digital Marketing</option>
+          <option value="event">Event Management</option>
+          <option value="brand">Brand Strategy</option>
+          <option value="pr">Influencer &amp; PR</option>
+          <option value="all" data-lang-th="ครบทุกบริการ" data-lang-en="All Services">ครบทุกบริการ</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="f-msg" data-lang-th="รายละเอียดโปรเจกต์" data-lang-en="Project Details">รายละเอียดโปรเจกต์</label>
+        <textarea id="f-msg" rows="4"></textarea>
+      </div>
+      <button type="submit" class="btn-primary btn-full">
+        <i data-lucide="send" width="16" height="16"></i>
+        <span data-lang-th="ส่งข้อความ" data-lang-en="Send Message">ส่งข้อความ</span>
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__top">
+      <div>
+        <div class="footer__brand">Marketer<span>.</span></div>
+        <p class="footer__tagline" data-lang-th="บริษัทรับจัดงานและการตลาดทั้งออนไลน์และออฟไลน์ ครบวงจร มืออาชีพ" data-lang-en="Full-service marketing and event agency — online, offline, and everything between.">บริษัทรับจัดงานและการตลาดทั้งออนไลน์และออฟไลน์ ครบวงจร มืออาชีพ</p>
+        <div class="footer__social">
+          <a href="#" aria-label="Facebook"><i data-lucide="facebook" width="15" height="15"></i></a>
+          <a href="#" aria-label="Instagram"><i data-lucide="instagram" width="15" height="15"></i></a>
+          <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin" width="15" height="15"></i></a>
+          <a href="#" aria-label="YouTube"><i data-lucide="youtube" width="15" height="15"></i></a>
+        </div>
+      </div>
+      <div>
+        <div class="footer__coltitle" data-lang-th="บริการ" data-lang-en="Services">บริการ</div>
+        <ul class="footer__links">
+          <li><a href="#services">Digital Marketing</a></li>
+          <li><a href="#services">Event Management</a></li>
+          <li><a href="#services">Brand Strategy</a></li>
+          <li><a href="#services">Influencer &amp; PR</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer__coltitle" data-lang-th="บริษัท" data-lang-en="Company">บริษัท</div>
+        <ul class="footer__links">
+          <li><a href="#about" data-lang-th="เกี่ยวกับเรา" data-lang-en="About Us">เกี่ยวกับเรา</a></li>
+          <li><a href="#portfolio" data-lang-th="ผลงาน" data-lang-en="Portfolio">ผลงาน</a></li>
+          <li><a href="#process" data-lang-th="กระบวนการ" data-lang-en="Process">กระบวนการ</a></li>
+          <li><a href="#contact" data-lang-th="ติดต่อเรา" data-lang-en="Contact">ติดต่อเรา</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer__coltitle" data-lang-th="ติดต่อ" data-lang-en="Contact">ติดต่อ</div>
+        <ul class="footer__links">
+          <li><a href="tel:+6621234567">+66 2 123 4567</a></li>
+          <li><a href="mailto:hello@marketeragency.co.th">hello@marketeragency.co.th</a></li>
+          <li><a href="#">LINE: @marketer</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copy" data-lang-th="© 2567 Marketer Agency. สงวนลิขสิทธิ์." data-lang-en="© 2024 Marketer Agency. All rights reserved.">© 2567 Marketer Agency. สงวนลิขสิทธิ์.</p>
+      <p class="footer__copy" data-lang-th="ออกแบบเพื่อตลาดไทย" data-lang-en="Designed for the Thai market.">ออกแบบเพื่อตลาดไทย</p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/lucide@0.460.0"></script>
+<script>
+// Navbar scroll
+var navbar=document.getElementById('navbar');
+window.addEventListener('scroll',function(){
+  navbar.classList.toggle('scrolled',window.scrollY>60);
+},{passive:true});
+
+// Parallax hero
+var heroBg=document.getElementById('heroBg');
+window.addEventListener('scroll',function(){
+  heroBg.style.transform='translateY('+(window.scrollY*.32)+'px)';
+},{passive:true});
+
+// Hamburger
+var ham=document.getElementById('hamburger');
+var mob=document.getElementById('mobileMenu');
+var ovl=document.getElementById('menuOverlay');
+var cls=document.getElementById('menuClose');
+function openM(){mob.classList.add('open');ovl.classList.add('open');document.body.style.overflow='hidden'}
+function closeM(){mob.classList.remove('open');ovl.classList.remove('open');document.body.style.overflow=''}
+ham.addEventListener('click',openM);
+cls.addEventListener('click',closeM);
+ovl.addEventListener('click',closeM);
+mob.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeM)});
+
+// Accordion
+function toggleAcc(id){
+  var item=document.getElementById(id);
+  var isOpen=item.classList.contains('open');
+  document.querySelectorAll('.acc-item').forEach(function(el){el.classList.remove('open')});
+  if(!isOpen)item.classList.add('open');
+}
+
+// Scroll reveal
+var ro=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible')});
+},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(function(el){ro.observe(el)});
+
+// Init Lucide
+lucide.createIcons();
+</script>
+
+<script>
+(function(){var K='site-lang',L=localStorage.getItem(K)||'th';function S(l){L=l;localStorage.setItem(K,l);document.documentElement.lang=l;document.querySelectorAll('[data-lang-th]').forEach(function(e){var t=e.getAttribute('data-lang-'+l);if(t!==null){e.textContent=t}});var lb=document.querySelector('.lang-sw__label');if(lb){lb.textContent=l.toUpperCase()}}var sw=document.querySelector('.lang-sw');if(sw){sw.addEventListener('click',function(){S(L==='th'?'en':'th')});sw.style.cursor='pointer'}if(L!=='th'){S(L)}})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1800 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marketer Agency — รับจัดงานและการตลาดครบวงจร</title>
+<meta name="description" content="Marketer Agency รับจัดงานอีเวนต์และบริการการตลาดออนไลน์และออฟไลน์ครบวงจร ด้วยทีมงานมืออาชีพ">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Barlow+Condensed:wght@600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@0.460.0"></script>
+<style>
+  :root {
+    --bg: #1A1A1A;
+    --bg2: #111111;
+    --white: #F0EEE9;
+    --orange: #FF4D1C;
+    --orange-dim: #cc3d16;
+    --border: rgba(240,238,233,0.12);
+    --border-orange: rgba(255,77,28,0.4);
+    --mono: 'IBM Plex Mono', 'Courier New', monospace;
+    --sans-th: 'IBM Plex Sans Thai', 'Sukhumvit Set', sans-serif;
+    --condensed: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html {
+    scroll-behavior: smooth;
+    background: var(--bg);
+  }
+
+  body {
+    font-family: var(--sans-th);
+    font-size: 16px;
+    color: var(--white);
+    background: var(--bg);
+    line-height: 1.8;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    overflow-x: hidden;
+  }
+
+  /* ─── TYPOGRAPHY ─── */
+  h1, h2, h3, h4 {
+    font-family: var(--condensed);
+    line-height: 1.5;
+    letter-spacing: -0.02em;
+  }
+
+  .mono { font-family: var(--mono); }
+
+  /* Thai text overrides — no letter-spacing, safe line-height */
+  [lang="th"] body,
+  .thai-safe {
+    letter-spacing: 0;
+    line-height: 1.8;
+  }
+
+  /* ─── SCROLLBAR ─── */
+  ::-webkit-scrollbar { width: 4px; height: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg2); }
+  ::-webkit-scrollbar-thumb { background: var(--orange); border-radius: 2px; }
+
+  /* ─── NAVBAR ─── */
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 1.5rem;
+    transition: background 0.35s ease, padding 0.35s ease;
+    background: transparent;
+  }
+  .nav.scrolled {
+    background: rgba(26,26,26,0.97);
+    padding: 0.75rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav__logo {
+    font-family: var(--condensed);
+    font-weight: 900;
+    font-size: 1.4rem;
+    letter-spacing: -0.03em;
+    color: var(--white);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .nav__logo span { color: var(--orange); }
+
+  .nav__links {
+    display: none;
+    list-style: none;
+    gap: 2rem;
+    align-items: center;
+  }
+  .nav__links a {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: rgba(240,238,233,0.7);
+    text-decoration: none;
+    transition: color 0.2s;
+    letter-spacing: 0.03em;
+  }
+  .nav__links a:hover { color: var(--orange); }
+
+  .nav__right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  /* Language switcher */
+  .lang-sw {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: rgba(240,238,233,0.6);
+    border: 1px solid var(--border);
+    padding: 4px 8px;
+    border-radius: 3px;
+    transition: color 0.2s, border-color 0.2s;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .lang-sw:hover { color: var(--orange); border-color: var(--border-orange); }
+  .lang-sw svg { flex-shrink: 0; }
+
+  .nav__cta {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--bg);
+    background: var(--orange);
+    padding: 0.55em 1.1em;
+    border-radius: 3px;
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    transition: background 0.2s, transform 0.2s;
+    display: none;
+  }
+  .nav__cta:hover { background: var(--orange-dim); transform: translateY(-1px); }
+
+  .nav__burger {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--white);
+    width: 40px; height: 40px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: border-color 0.2s;
+    flex-shrink: 0;
+  }
+  .nav__burger:hover { border-color: var(--orange); }
+
+  /* Mobile menu */
+  .nav__mobile {
+    position: fixed;
+    top: 0; right: 0;
+    width: min(320px, 85vw);
+    height: 100vh;
+    background: var(--bg2);
+    border-left: 1px solid var(--border);
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 1.5rem;
+    transform: translateX(110%);
+    transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+  }
+  .nav__mobile.open { transform: translateX(0); }
+  .nav__mobile-close {
+    align-self: flex-end;
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--white);
+    width: 40px; height: 40px;
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; margin-bottom: 2rem;
+  }
+  .nav__mobile-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .nav__mobile-links li {
+    border-bottom: 1px solid var(--border);
+  }
+  .nav__mobile-links a {
+    display: block;
+    padding: 1rem 0;
+    font-family: var(--condensed);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--white);
+    text-decoration: none;
+    transition: color 0.2s;
+    letter-spacing: -0.01em;
+  }
+  .nav__mobile-links a:hover { color: var(--orange); }
+  .nav__mobile-cta {
+    margin-top: 2rem;
+    display: block;
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    text-align: center;
+    background: var(--orange);
+    color: var(--bg);
+    padding: 1em 1.5em;
+    border-radius: 3px;
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    min-height: 44px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .nav__overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
+  .nav__overlay.open { opacity: 1; pointer-events: all; }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 6rem 1.5rem 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero__bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1400&h=900&fit=crop');
+    background-size: cover;
+    background-position: center;
+    transform-origin: center;
+    animation: heroZoom 12s ease-in-out infinite alternate;
+  }
+  @keyframes heroZoom {
+    from { transform: scale(1); }
+    to { transform: scale(1.06); }
+  }
+
+  .hero__bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(26,26,26,0.96) 0%,
+      rgba(26,26,26,0.7) 50%,
+      rgba(26,26,26,0.3) 100%
+    );
+  }
+
+  .hero__ticker {
+    position: absolute;
+    top: 80px;
+    left: 0; right: 0;
+    overflow: hidden;
+    border-top: 1px solid var(--border-orange);
+    border-bottom: 1px solid var(--border-orange);
+    background: rgba(255,77,28,0.06);
+    padding: 0.4rem 0;
+    z-index: 2;
+  }
+  .hero__ticker-inner {
+    display: flex;
+    gap: 3rem;
+    white-space: nowrap;
+    animation: ticker 22s linear infinite;
+  }
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .hero__ticker span {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--orange);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+  .hero__ticker-dot {
+    color: rgba(240,238,233,0.3) !important;
+    letter-spacing: 0 !important;
+  }
+
+  .hero__content {
+    position: relative;
+    z-index: 3;
+    max-width: 800px;
+  }
+
+  .hero__tag {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--orange);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .hero__tag::before {
+    content: '';
+    display: inline-block;
+    width: 20px; height: 2px;
+    background: var(--orange);
+    flex-shrink: 0;
+  }
+
+  .hero__h1 {
+    font-family: var(--condensed);
+    font-weight: 900;
+    font-size: clamp(3rem, 11vw, 7.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--white);
+    margin-bottom: 0.2em;
+  }
+  .hero__h1 .accent { color: var(--orange); }
+
+  .hero__sub {
+    font-family: var(--sans-th);
+    font-size: clamp(0.95rem, 2vw, 1.1rem);
+    color: rgba(240,238,233,0.7);
+    line-height: 1.9;
+    margin-bottom: 2rem;
+    max-width: 500px;
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: var(--orange);
+    color: var(--bg);
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 0.9em 2em;
+    border-radius: 4px;
+    text-decoration: none;
+    min-height: 48px;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+  }
+  .btn-primary:hover {
+    background: var(--orange-dim);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(255,77,28,0.35);
+  }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: transparent;
+    color: var(--white);
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    padding: 0.9em 2em;
+    border-radius: 4px;
+    text-decoration: none;
+    min-height: 48px;
+    border: 1px solid rgba(240,238,233,0.3);
+    transition: border-color 0.2s, color 0.2s;
+    text-transform: uppercase;
+  }
+  .btn-ghost:hover { border-color: var(--white); color: var(--white); }
+
+  .hero__stats {
+    display: flex;
+    gap: 2rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+  .hero__stat-num {
+    font-family: var(--condensed);
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: var(--orange);
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+  .hero__stat-label {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    color: rgba(240,238,233,0.5);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 0.15rem;
+  }
+
+  /* ─── SECTION BASE ─── */
+  section {
+    padding: 5rem 1.5rem;
+  }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--orange);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 1.2rem;
+  }
+  .section-label::before {
+    content: '';
+    display: inline-block;
+    width: 24px; height: 2px;
+    background: var(--orange);
+    flex-shrink: 0;
+  }
+
+  .section-h2 {
+    font-family: var(--condensed);
+    font-size: clamp(2.4rem, 7vw, 5rem);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: var(--white);
+    margin-bottom: 0.6rem;
+  }
+  .section-h2 .accent { color: var(--orange); }
+
+  .section-desc {
+    font-family: var(--sans-th);
+    font-size: 1rem;
+    color: rgba(240,238,233,0.65);
+    line-height: 1.85;
+    max-width: 520px;
+  }
+
+  /* ─── SERVICES ─── */
+  .services {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .services__header {
+    margin-bottom: 3rem;
+  }
+
+  .services__scroll-track {
+    display: flex;
+    gap: 1px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    cursor: grab;
+    -webkit-overflow-scrolling: touch;
+  }
+  .services__scroll-track::-webkit-scrollbar { display: none; }
+  .services__scroll-track:active { cursor: grabbing; }
+
+  .service-card {
+    flex: 0 0 min(300px, 80vw);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 2.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s;
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
+  }
+  .service-card:hover { border-color: var(--border-orange); }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--orange);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s ease;
+  }
+  .service-card:hover::before { transform: scaleX(1); }
+
+  .service-card__num {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--orange);
+    letter-spacing: 0.1em;
+    margin-bottom: 1.5rem;
+    display: block;
+  }
+  .service-card__icon {
+    width: 44px; height: 44px;
+    background: rgba(255,77,28,0.1);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.5rem;
+    color: var(--orange);
+    transition: background 0.2s;
+  }
+  .service-card:hover .service-card__icon { background: rgba(255,77,28,0.2); }
+  .service-card__title {
+    font-family: var(--condensed);
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--white);
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+  }
+  .service-card__body {
+    font-family: var(--sans-th);
+    font-size: 0.9rem;
+    color: rgba(240,238,233,0.6);
+    line-height: 1.85;
+  }
+  .service-card__tags {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .tag {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: rgba(240,238,233,0.5);
+    border: 1px solid var(--border);
+    padding: 0.3em 0.7em;
+    border-radius: 2px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .services__hint {
+    margin-top: 1.5rem;
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    color: rgba(240,238,233,0.3);
+    letter-spacing: 0.08em;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  /* ─── PROCESS ─── */
+  .process { background: var(--bg); }
+
+  .process__steps {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .step {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 1.5rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .step.visible { opacity: 1; transform: translateY(0); }
+
+  .step__num {
+    font-family: var(--condensed);
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--orange);
+    letter-spacing: -0.04em;
+    line-height: 1;
+    opacity: 0.4;
+    padding-top: 0.2rem;
+  }
+  .step__content {}
+  .step__title {
+    font-family: var(--condensed);
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--white);
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+  .step__body {
+    font-family: var(--sans-th);
+    font-size: 0.92rem;
+    color: rgba(240,238,233,0.6);
+    line-height: 1.85;
+  }
+
+  /* ─── WORK / PORTFOLIO ─── */
+  .work {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .work__grid {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .work-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 6px;
+    aspect-ratio: 16/9;
+    opacity: 0;
+    transform: scale(0.97);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .work-item.visible { opacity: 1; transform: scale(1); }
+
+  .work-item img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+  }
+  .work-item:hover img { transform: scale(1.04); }
+
+  .work-item__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(26,26,26,0.92) 0%, transparent 60%);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  .work-item__cat {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--orange);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+  .work-item__title {
+    font-family: var(--condensed);
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--white);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+  .work-item__badge {
+    position: absolute;
+    top: 1rem; right: 1rem;
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    background: var(--orange);
+    color: var(--bg);
+    padding: 0.3em 0.65em;
+    border-radius: 2px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* ─── ABOUT / WHY ─── */
+  .about { background: var(--bg); }
+
+  .about__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .about__img-wrap {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .about__img-wrap img {
+    width: 100%; height: auto;
+    display: block;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+  }
+  .about__img-badge {
+    position: absolute;
+    bottom: -1px; right: 1.5rem;
+    background: var(--orange);
+    color: var(--bg);
+    font-family: var(--condensed);
+    font-size: 1rem;
+    font-weight: 900;
+    padding: 0.6em 1.2em;
+    letter-spacing: -0.01em;
+    border-radius: 4px 4px 0 0;
+  }
+
+  .about__points {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+  .about__point {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    opacity: 0;
+    transform: translateX(-16px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .about__point.visible { opacity: 1; transform: translateX(0); }
+  .about__point-icon {
+    flex-shrink: 0;
+    width: 36px; height: 36px;
+    background: rgba(255,77,28,0.12);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--orange);
+    margin-top: 0.15rem;
+  }
+  .about__point-title {
+    font-family: var(--condensed);
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--white);
+    letter-spacing: -0.01em;
+    margin-bottom: 0.2rem;
+  }
+  .about__point-text {
+    font-family: var(--sans-th);
+    font-size: 0.9rem;
+    color: rgba(240,238,233,0.6);
+    line-height: 1.85;
+  }
+
+  /* ─── TESTIMONIALS ─── */
+  .testimonials {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .testi-track {
+    margin-top: 3rem;
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-bottom: 1rem;
+    -webkit-overflow-scrolling: touch;
+  }
+  .testi-track::-webkit-scrollbar { display: none; }
+
+  .testi-card {
+    flex: 0 0 min(320px, 84vw);
+    background: rgba(240,238,233,0.04);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease, border-color 0.25s;
+  }
+  .testi-card.visible { opacity: 1; transform: translateY(0); }
+  .testi-card:hover { border-color: var(--border-orange); }
+
+  .testi-quote {
+    font-family: var(--condensed);
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: var(--orange);
+    opacity: 0.2;
+    line-height: 0.8;
+    margin-bottom: 1rem;
+    letter-spacing: -0.04em;
+  }
+  .testi-text {
+    font-family: var(--sans-th);
+    font-size: 0.92rem;
+    color: rgba(240,238,233,0.75);
+    line-height: 1.9;
+    margin-bottom: 1.5rem;
+  }
+  .testi-author {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--border);
+  }
+  .testi-avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--border);
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+  .testi-avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .testi-name {
+    font-family: var(--condensed);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -0.01em;
+  }
+  .testi-role {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: rgba(240,238,233,0.4);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* ─── CLIENTS ─── */
+  .clients {
+    background: var(--bg);
+    padding: 4rem 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+  .clients__label {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    color: rgba(240,238,233,0.35);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .clients__logos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 2rem;
+    justify-content: center;
+    align-items: center;
+  }
+  .client-logo {
+    font-family: var(--condensed);
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: rgba(240,238,233,0.18);
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  .client-logo:hover { color: rgba(240,238,233,0.5); }
+
+  /* ─── CTA BAND ─── */
+  .cta-band {
+    background: var(--orange);
+    padding: 4rem 1.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-band::before {
+    content: 'MARKETER';
+    position: absolute;
+    font-family: var(--condensed);
+    font-size: clamp(6rem, 25vw, 18rem);
+    font-weight: 900;
+    color: rgba(26,26,26,0.08);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    letter-spacing: -0.05em;
+    pointer-events: none;
+  }
+  .cta-band__h2 {
+    font-family: var(--condensed);
+    font-size: clamp(2rem, 6vw, 4.5rem);
+    font-weight: 900;
+    color: var(--bg);
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+  }
+  .cta-band__sub {
+    font-family: var(--sans-th);
+    font-size: 1rem;
+    color: rgba(26,26,26,0.7);
+    line-height: 1.85;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+  }
+  .btn-dark {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--bg);
+    color: var(--white);
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 0.9em 2em;
+    border-radius: 4px;
+    text-decoration: none;
+    min-height: 48px;
+    text-transform: uppercase;
+    transition: background 0.2s, transform 0.2s;
+    position: relative; z-index: 1;
+  }
+  .btn-dark:hover { background: #2a2a2a; transform: translateY(-2px); }
+
+  /* ─── CONTACT ─── */
+  .contact {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+  }
+
+  .contact__grid {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    margin-top: 3rem;
+  }
+
+  .contact__info {}
+  .contact__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .contact__item:first-child { padding-top: 0; }
+  .contact__item-icon {
+    flex-shrink: 0;
+    width: 36px; height: 36px;
+    background: rgba(255,77,28,0.1);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--orange);
+  }
+  .contact__item-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: rgba(240,238,233,0.4);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.2rem;
+  }
+  .contact__item-value {
+    font-family: var(--sans-th);
+    font-size: 0.95rem;
+    color: var(--white);
+    line-height: 1.6;
+  }
+
+  .contact__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .form-label {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: rgba(240,238,233,0.5);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .form-input, .form-textarea, .form-select {
+    background: rgba(240,238,233,0.04);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.8em 1em;
+    font-family: var(--sans-th);
+    font-size: 0.95rem;
+    color: var(--white);
+    outline: none;
+    transition: border-color 0.2s;
+    min-height: 44px;
+    width: 100%;
+    line-height: 1.8;
+  }
+  .form-input:focus, .form-textarea:focus, .form-select:focus {
+    border-color: var(--orange);
+  }
+  .form-textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+  .form-select { appearance: none; cursor: pointer; }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    background: #0d0d0d;
+    border-top: 1px solid var(--border);
+    padding: 3rem 1.5rem 2rem;
+  }
+  .footer__top {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .footer__logo {
+    font-family: var(--condensed);
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: var(--white);
+    letter-spacing: -0.03em;
+    margin-bottom: 0.5rem;
+  }
+  .footer__logo span { color: var(--orange); }
+  .footer__tagline {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: rgba(240,238,233,0.35);
+    letter-spacing: 0.08em;
+  }
+  .footer__nav-title {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--orange);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .footer__nav-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .footer__nav-list a {
+    font-family: var(--sans-th);
+    font-size: 0.9rem;
+    color: rgba(240,238,233,0.55);
+    text-decoration: none;
+    transition: color 0.2s;
+    line-height: 1.6;
+  }
+  .footer__nav-list a:hover { color: var(--white); }
+  .footer__social {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+  .footer__social a {
+    width: 38px; height: 38px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(240,238,233,0.5);
+    text-decoration: none;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .footer__social a:hover { color: var(--orange); border-color: var(--border-orange); }
+  .footer__bottom {
+    padding-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+  .footer__copy {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    color: rgba(240,238,233,0.25);
+    letter-spacing: 0.04em;
+  }
+
+  /* ─── DESKTOP ─── */
+  @media (min-width: 768px) {
+    section { padding: 7rem 3rem; }
+
+    .nav { padding: 1.4rem 3rem; }
+    .nav.scrolled { padding: 0.9rem 3rem; }
+    .nav__links { display: flex; }
+    .nav__cta { display: inline-flex; }
+    .nav__burger { display: none; }
+
+    .hero { padding: 8rem 3rem 5rem; }
+    .hero__actions { flex-direction: row; }
+
+    .services { padding: 7rem 3rem; }
+    .service-card { flex: 0 0 300px; }
+
+    .work__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .work-item:first-child {
+      grid-column: 1 / -1;
+      aspect-ratio: 21/8;
+    }
+
+    .about__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 5rem;
+    }
+
+    .contact__grid {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 5rem;
+    }
+
+    .footer__top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+    }
+    .footer__bottom {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .hero__h1 { font-size: 8rem; }
+    section { padding: 8rem 5rem; }
+    .nav { padding: 1.4rem 5rem; }
+    .nav.scrolled { padding: 0.9rem 5rem; }
+    .hero { padding: 9rem 5rem 6rem; }
+    .services { padding: 8rem 5rem; }
+  }
+
+  /* ─── REVEAL ANIMATION ─── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* side decoration lines */
+  .deco-line {
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--border-orange) 30%, var(--border-orange) 70%, transparent);
+    pointer-events: none;
+  }
+  .deco-line--left { left: clamp(1.5rem, 4vw, 5rem); }
+  .deco-line--right { right: clamp(1.5rem, 4vw, 5rem); display: none; }
+  @media (min-width: 768px) { .deco-line--right { display: block; } }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="mainNav">
+  <a href="#" class="nav__logo">MARKETER<span>.</span></a>
+  <ul class="nav__links">
+    <li><a href="#services" data-lang-th="บริการ" data-lang-en="Services">บริการ</a></li>
+    <li><a href="#process" data-lang-th="กระบวนการ" data-lang-en="Process">กระบวนการ</a></li>
+    <li><a href="#work" data-lang-th="ผลงาน" data-lang-en="Work">ผลงาน</a></li>
+    <li><a href="#about" data-lang-th="เกี่ยวกับ" data-lang-en="About">เกี่ยวกับ</a></li>
+    <li><a href="#contact" data-lang-th="ติดต่อ" data-lang-en="Contact">ติดต่อ</a></li>
+  </ul>
+  <div class="nav__right">
+    <div class="lang-sw" role="button" aria-label="Switch language">
+      <i data-lucide="globe" width="14" height="14"></i>
+      <span class="lang-sw__label">TH</span>
+    </div>
+    <a href="#contact" class="nav__cta" data-lang-th="เริ่มต้นเลย" data-lang-en="Get Started">เริ่มต้นเลย</a>
+    <button class="nav__burger" id="burgerBtn" aria-label="Open menu">
+      <i data-lucide="menu" width="20" height="20"></i>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="nav__overlay" id="navOverlay"></div>
+<div class="nav__mobile" id="mobileMenu">
+  <button class="nav__mobile-close" id="menuClose" aria-label="Close menu">
+    <i data-lucide="x" width="20" height="20"></i>
+  </button>
+  <ul class="nav__mobile-links">
+    <li><a href="#services" data-lang-th="บริการ" data-lang-en="Services">บริการ</a></li>
+    <li><a href="#process" data-lang-th="กระบวนการ" data-lang-en="Process">กระบวนการ</a></li>
+    <li><a href="#work" data-lang-th="ผลงาน" data-lang-en="Work">ผลงาน</a></li>
+    <li><a href="#about" data-lang-th="เกี่ยวกับ" data-lang-en="About">เกี่ยวกับ</a></li>
+    <li><a href="#contact" data-lang-th="ติดต่อ" data-lang-en="Contact">ติดต่อ</a></li>
+  </ul>
+  <a href="#contact" class="nav__mobile-cta" data-lang-th="เริ่มต้นเลย" data-lang-en="Get Started">เริ่มต้นเลย</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero__bg"></div>
+
+  <div class="hero__ticker" aria-hidden="true">
+    <div class="hero__ticker-inner">
+      <span>EVENT MANAGEMENT</span><span class="hero__ticker-dot">///</span>
+      <span>DIGITAL MARKETING</span><span class="hero__ticker-dot">///</span>
+      <span>BRAND ACTIVATION</span><span class="hero__ticker-dot">///</span>
+      <span>ONLINE + OFFLINE</span><span class="hero__ticker-dot">///</span>
+      <span>STRATEGIC CAMPAIGNS</span><span class="hero__ticker-dot">///</span>
+      <span>EVENT MANAGEMENT</span><span class="hero__ticker-dot">///</span>
+      <span>DIGITAL MARKETING</span><span class="hero__ticker-dot">///</span>
+      <span>BRAND ACTIVATION</span><span class="hero__ticker-dot">///</span>
+      <span>ONLINE + OFFLINE</span><span class="hero__ticker-dot">///</span>
+      <span>STRATEGIC CAMPAIGNS</span><span class="hero__ticker-dot">///</span>
+    </div>
+  </div>
+
+  <div class="hero__content">
+    <p class="hero__tag" data-lang-th="บริษัทการตลาดครบวงจร" data-lang-en="Full-Service Marketing Agency">บริษัทการตลาดครบวงจร</p>
+
+    <h1 class="hero__h1">
+      <span data-lang-th="เราทำให้" data-lang-en="WE MAKE">เราทำให้</span><br>
+      <span class="accent" data-lang-th="แบรนด์คุณ" data-lang-en="YOUR BRAND">แบรนด์คุณ</span><br>
+      <span data-lang-th="เป็นที่จดจำ" data-lang-en="UNFORGETTABLE">เป็นที่จดจำ</span>
+    </h1>
+
+    <p class="hero__sub" data-lang-th="Marketer Agency รับออกแบบและบริหารงานอีเวนต์ พร้อมกลยุทธ์การตลาดออนไลน์และออฟไลน์ที่ตอบโจทย์ธุรกิจของคุณอย่างแท้จริง" data-lang-en="Marketer Agency designs and manages events, crafting online and offline marketing strategies that deliver real results for your business.">Marketer Agency รับออกแบบและบริหารงานอีเวนต์ พร้อมกลยุทธ์การตลาดออนไลน์และออฟไลน์ที่ตอบโจทย์ธุรกิจของคุณอย่างแท้จริง</p>
+
+    <div class="hero__actions">
+      <a href="#contact" class="btn-primary">
+        <i data-lucide="send" width="16" height="16"></i>
+        <span data-lang-th="ปรึกษาฟรี" data-lang-en="Free Consultation">ปรึกษาฟรี</span>
+      </a>
+      <a href="#work" class="btn-ghost">
+        <i data-lucide="play-circle" width="16" height="16"></i>
+        <span data-lang-th="ดูผลงาน" data-lang-en="View Our Work">ดูผลงาน</span>
+      </a>
+    </div>
+
+    <div class="hero__stats">
+      <div>
+        <div class="hero__stat-num">200+</div>
+        <div class="hero__stat-label" data-lang-th="งานอีเวนต์" data-lang-en="Events Managed">งานอีเวนต์</div>
+      </div>
+      <div>
+        <div class="hero__stat-num">8+</div>
+        <div class="hero__stat-label" data-lang-th="ปีประสบการณ์" data-lang-en="Years Experience">ปีประสบการณ์</div>
+      </div>
+      <div>
+        <div class="hero__stat-num">98%</div>
+        <div class="hero__stat-label" data-lang-th="ลูกค้าพึงพอใจ" data-lang-en="Client Satisfaction">ลูกค้าพึงพอใจ</div>
+      </div>
+      <div>
+        <div class="hero__stat-num">50+</div>
+        <div class="hero__stat-label" data-lang-th="แบรนด์ที่ไว้วางใจ" data-lang-en="Brands Trust Us">แบรนด์ที่ไว้วางใจ</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services__header reveal">
+    <p class="section-label" data-lang-th="บริการของเรา" data-lang-en="Our Services">บริการของเรา</p>
+    <h2 class="section-h2">
+      <span data-lang-th="ครอบคลุม" data-lang-en="COMPLETE">ครอบคลุม</span>
+      <span class="accent" data-lang-th="ทุกมิติ" data-lang-en="SOLUTIONS"> ทุกมิติ</span>
+    </h2>
+    <p class="section-desc" data-lang-th="เราพร้อมให้บริการครบจบในที่เดียว ตั้งแต่การวางกลยุทธ์ไปจนถึงการลงมือทำ" data-lang-en="End-to-end solutions in one place — from strategy to execution.">เราพร้อมให้บริการครบจบในที่เดียว ตั้งแต่การวางกลยุทธ์ไปจนถึงการลงมือทำ</p>
+  </div>
+
+  <div class="services__scroll-track" id="serviceTrack">
+    <!-- Card 1 -->
+    <div class="service-card">
+      <span class="service-card__num">01 / 06</span>
+      <div class="service-card__icon"><i data-lucide="calendar-days" width="22" height="22"></i></div>
+      <h3 class="service-card__title" data-lang-th="จัดงานอีเวนต์" data-lang-en="Event Management">จัดงานอีเวนต์</h3>
+      <p class="service-card__body" data-lang-th="บริหารงานอีเวนต์ครบวงจร ตั้งแต่คอนเสิร์ต งานเปิดตัวสินค้า งานสัมมนา ไปจนถึง roadshow ระดับประเทศ" data-lang-en="Full-cycle event production — concerts, product launches, seminars, and nationwide roadshows.">บริหารงานอีเวนต์ครบวงจร ตั้งแต่คอนเสิร์ต งานเปิดตัวสินค้า งานสัมมนา ไปจนถึง roadshow ระดับประเทศ</p>
+      <div class="service-card__tags">
+        <span class="tag">Venue</span>
+        <span class="tag">Production</span>
+        <span class="tag">Logistics</span>
+      </div>
+    </div>
+    <!-- Card 2 -->
+    <div class="service-card">
+      <span class="service-card__num">02 / 06</span>
+      <div class="service-card__icon"><i data-lucide="megaphone" width="22" height="22"></i></div>
+      <h3 class="service-card__title" data-lang-th="การตลาดออนไลน์" data-lang-en="Digital Marketing">การตลาดออนไลน์</h3>
+      <p class="service-card__body" data-lang-th="วางแผนและบริหารแคมเปญดิจิทัลแบบครบวงจร ทั้ง Social Media, SEO, Paid Ads และ Influencer" data-lang-en="Full-funnel digital campaigns — social media, SEO, paid advertising, and influencer partnerships.">วางแผนและบริหารแคมเปญดิจิทัลแบบครบวงจร ทั้ง Social Media, SEO, Paid Ads และ Influencer</p>
+      <div class="service-card__tags">
+        <span class="tag">Social</span>
+        <span class="tag">SEO</span>
+        <span class="tag">Paid Ads</span>
+      </div>
+    </div>
+    <!-- Card 3 -->
+    <div class="service-card">
+      <span class="service-card__num">03 / 06</span>
+      <div class="service-card__icon"><i data-lucide="zap" width="22" height="22"></i></div>
+      <h3 class="service-card__title" data-lang-th="Brand Activation" data-lang-en="Brand Activation">Brand Activation</h3>
+      <p class="service-card__body" data-lang-th="สร้างประสบการณ์ตรงระหว่างแบรนด์กับผู้บริโภค ด้วยกิจกรรม pop-up, sampling และ experiential marketing" data-lang-en="Direct brand-to-consumer experiences through pop-ups, sampling campaigns, and experiential activations.">สร้างประสบการณ์ตรงระหว่างแบรนด์กับผู้บริโภค ด้วยกิจกรรม pop-up, sampling และ experiential marketing</p>
+      <div class="service-card__tags">
+        <span class="tag">Pop-Up</span>
+        <span class="tag">Sampling</span>
+        <span class="tag">Experiential</span>
+      </div>
+    </div>
+    <!-- Card 4 -->
+    <div class="service-card">
+      <span class="service-card__num">04 / 06</span>
+      <div class="service-card__icon"><i data-lucide="camera" width="22" height="22"></i></div>
+      <h3 class="service-card__title" data-lang-th="ผลิตคอนเทนต์" data-lang-en="Content Production">ผลิตคอนเทนต์</h3>
+      <p class="service-card__body" data-lang-th="ถ่ายทำและผลิตคอนเทนต์คุณภาพสูง ทั้งภาพนิ่ง วิดีโอ รีลส์ และ live streaming สำหรับทุกแพลตฟอร์ม" data-lang-en="High-quality photos, videos, reels, and live streams for every platform and touchpoint.">ถ่ายทำและผลิตคอนเทนต์คุณภาพสูง ทั้งภาพนิ่ง วิดีโอ รีลส์ และ live streaming สำหรับทุกแพลตฟอร์ม</p>
+      <div class="service-card__tags">
+        <span class="tag">Video</span>
+        <span class="tag">Photo</span>
+        <span class="tag">Live</span>
+      </div>
+    </div>
+    <!-- Card 5 -->
+    <div class="service-card">
+      <span class="service-card__num">05 / 06</span>
+      <div class="service-card__icon"><i data-lucide="bar-chart-2" width="22" height="22"></i></div>
+      <h3 class="service-card__title" data-lang-th="วิเคราะห์ข้อมูล" data-lang-en="Data & Analytics">วิเคราะห์ข้อมูล</h3>
+      <p class="service-card__body" data-lang-th="วัดผลและวิเคราะห์ประสิทธิภาพแคมเปญ พร้อม report เชิงลึกที่ช่วยให้คุณตัดสินใจเชิงธุรกิจได้อย่างแม่นยำ" data-lang-en="Campaign performance measurement and deep-dive reports that sharpen your business decisions.">วัดผลและวิเคราะห์ประสิทธิภาพแคมเปญ พร้อม report เชิงลึกที่ช่วยให้คุณตัดสินใจเชิงธุรกิจได้อย่างแม่นยำ</p>
+      <div class="service-card__tags">
+        <span class="tag">Analytics</span>
+        <span class="tag">KPI</span>
+        <span class="tag">Reporting</span>
+      </div>
+    </div>
+    <!-- Card 6 -->
+    <div class="service-card">
+      <span class="service-card__num">06 / 06</span>
+      <div class="service-card__icon"><i data-lucide="target" width="22" height="22"></i></div>
+      <h3 class="service-card__title" data-lang-th="กลยุทธ์แบรนด์" data-lang-en="Brand Strategy">กลยุทธ์แบรนด์</h3>
+      <p class="service-card__body" data-lang-th="วางแผนกลยุทธ์แบรนด์ระยะยาว ออกแบบ identity และพัฒนา messaging ที่สื่อสารตรงใจกลุ่มเป้าหมาย" data-lang-en="Long-term brand strategy, identity design, and messaging that resonates with your target audience.">วางแผนกลยุทธ์แบรนด์ระยะยาว ออกแบบ identity และพัฒนา messaging ที่สื่อสารตรงใจกลุ่มเป้าหมาย</p>
+      <div class="service-card__tags">
+        <span class="tag">Identity</span>
+        <span class="tag">Strategy</span>
+        <span class="tag">Positioning</span>
+      </div>
+    </div>
+  </div>
+
+  <p class="services__hint reveal">
+    <i data-lucide="mouse-pointer-2" width="12" height="12"></i>
+    <span data-lang-th="เลื่อนเพื่อดูบริการทั้งหมด" data-lang-en="Drag to explore all services">เลื่อนเพื่อดูบริการทั้งหมด</span>
+  </p>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process" style="position:relative;">
+  <div class="deco-line deco-line--left"></div>
+  <div class="deco-line deco-line--right"></div>
+
+  <div class="reveal">
+    <p class="section-label" data-lang-th="วิธีการทำงาน" data-lang-en="How We Work">วิธีการทำงาน</p>
+    <h2 class="section-h2">
+      <span data-lang-th="กระบวนการ" data-lang-en="OUR">กระบวนการ</span>
+      <span class="accent" data-lang-th="ที่ชัดเจน" data-lang-en=" PROCESS"> ที่ชัดเจน</span>
+    </h2>
+    <p class="section-desc" data-lang-th="เราทำงานอย่างโปร่งใสและมีระบบ คุณจะรู้สถานะของโปรเจกต์ในทุกขั้นตอน" data-lang-en="We operate with full transparency and structure — you're always in the loop at every stage.">เราทำงานอย่างโปร่งใสและมีระบบ คุณจะรู้สถานะของโปรเจกต์ในทุกขั้นตอน</p>
+  </div>
+
+  <div class="process__steps">
+    <div class="step">
+      <div class="step__num">01</div>
+      <div class="step__content">
+        <h3 class="step__title" data-lang-th="รับฟังและวิเคราะห์" data-lang-en="Listen & Analyze">รับฟังและวิเคราะห์</h3>
+        <p class="step__body" data-lang-th="เราเริ่มต้นด้วยการเข้าใจธุรกิจ เป้าหมาย และกลุ่มเป้าหมายของคุณอย่างละเอียด ก่อนออกแบบกลยุทธ์ที่เหมาะสม" data-lang-en="We begin by thoroughly understanding your business, goals, and audience before designing a tailored strategy.">เราเริ่มต้นด้วยการเข้าใจธุรกิจ เป้าหมาย และกลุ่มเป้าหมายของคุณอย่างละเอียด ก่อนออกแบบกลยุทธ์ที่เหมาะสม</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step__num">02</div>
+      <div class="step__content">
+        <h3 class="step__title" data-lang-th="ออกแบบกลยุทธ์" data-lang-en="Design the Strategy">ออกแบบกลยุทธ์</h3>
+        <p class="step__body" data-lang-th="ทีมงานผู้เชี่ยวชาญร่วมกันออกแบบแผนงานที่ครอบคลุมทุก touchpoint ทั้งออนไลน์และออฟไลน์ พร้อม KPI ที่วัดผลได้จริง" data-lang-en="Our expert team crafts a comprehensive plan covering every touchpoint — online and offline — with measurable KPIs.">ทีมงานผู้เชี่ยวชาญร่วมกันออกแบบแผนงานที่ครอบคลุมทุก touchpoint ทั้งออนไลน์และออฟไลน์ พร้อม KPI ที่วัดผลได้จริง</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step__num">03</div>
+      <div class="step__content">
+        <h3 class="step__title" data-lang-th="ลงมือทำ" data-lang-en="Execute with Precision">ลงมือทำ</h3>
+        <p class="step__body" data-lang-th="เราบริหารทุกรายละเอียดในการดำเนินงาน โดยประสานทีมงาน vendor และพาร์ทเนอร์อย่างมีประสิทธิภาพ" data-lang-en="We manage every execution detail — coordinating team, vendors, and partners with precision.">เราบริหารทุกรายละเอียดในการดำเนินงาน โดยประสานทีมงาน vendor และพาร์ทเนอร์อย่างมีประสิทธิภาพ</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step__num">04</div>
+      <div class="step__content">
+        <h3 class="step__title" data-lang-th="วัดผลและรายงาน" data-lang-en="Measure & Report">วัดผลและรายงาน</h3>
+        <p class="step__body" data-lang-th="หลังจากเสร็จงาน เราจัดทำรายงานผลลัพธ์เชิงลึก พร้อม insight ที่นำไปใช้พัฒนาแคมเปญถัดไปได้ทันที" data-lang-en="Post-campaign, we deliver deep-dive results reports with actionable insights for your next campaign.">หลังจากเสร็จงาน เราจัดทำรายงานผลลัพธ์เชิงลึก พร้อม insight ที่นำไปใช้พัฒนาแคมเปญถัดไปได้ทันที</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="work" id="work">
+  <div class="reveal">
+    <p class="section-label" data-lang-th="ผลงานที่ผ่านมา" data-lang-en="Selected Work">ผลงานที่ผ่านมา</p>
+    <h2 class="section-h2">
+      <span data-lang-th="ผลงาน" data-lang-en="OUR">ผลงาน</span>
+      <span class="accent" data-lang-th="ที่ภูมิใจ" data-lang-en=" WORK"> ที่ภูมิใจ</span>
+    </h2>
+  </div>
+
+  <div class="work__grid">
+    <div class="work-item">
+      <img src="https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=1200&h=500&fit=crop" alt="speaker on stage at large event">
+      <div class="work-item__overlay">
+        <p class="work-item__cat" data-lang-th="อีเวนต์ / งานสัมมนา" data-lang-en="Event / Seminar">อีเวนต์ / งานสัมมนา</p>
+        <h3 class="work-item__title" data-lang-th="Marketing Summit 2024 — ผู้เข้าร่วม 3,000 คน" data-lang-en="Marketing Summit 2024 — 3,000 Attendees">Marketing Summit 2024 — ผู้เข้าร่วม 3,000 คน</h3>
+      </div>
+      <span class="work-item__badge" data-lang-th="งานล่าสุด" data-lang-en="Featured">งานล่าสุด</span>
+    </div>
+    <div class="work-item">
+      <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=800&h=500&fit=crop" alt="product launch presentation">
+      <div class="work-item__overlay">
+        <p class="work-item__cat" data-lang-th="เปิดตัวสินค้า" data-lang-en="Product Launch">เปิดตัวสินค้า</p>
+        <h3 class="work-item__title" data-lang-th="Tech Brand X — Global Launch Campaign" data-lang-en="Tech Brand X — Global Launch Campaign">Tech Brand X — Global Launch Campaign</h3>
+      </div>
+    </div>
+    <div class="work-item">
+      <img src="https://images.unsplash.com/photo-1777559542650-f2b84a66d30f?w=800&h=500&fit=crop" alt="digital marketing team working">
+      <div class="work-item__overlay">
+        <p class="work-item__cat" data-lang-th="การตลาดดิจิทัล" data-lang-en="Digital Marketing">การตลาดดิจิทัล</p>
+        <h3 class="work-item__title" data-lang-th="Social Commerce Campaign — ROAS 8x" data-lang-en="Social Commerce Campaign — ROAS 8x">Social Commerce Campaign — ROAS 8x</h3>
+      </div>
+    </div>
+    <div class="work-item">
+      <img src="https://images.unsplash.com/photo-1561489401-fc2876ced162?w=800&h=500&fit=crop" alt="people at event indoor">
+      <div class="work-item__overlay">
+        <p class="work-item__cat" data-lang-th="Brand Activation" data-lang-en="Brand Activation">Brand Activation</p>
+        <h3 class="work-item__title" data-lang-th="Lifestyle Brand — Pop-Up Series ทั่วประเทศ" data-lang-en="Lifestyle Brand — Nationwide Pop-Up Series">Lifestyle Brand — Pop-Up Series ทั่วประเทศ</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about__inner">
+    <div class="reveal">
+      <div class="about__img-wrap">
+        <img src="https://images.unsplash.com/photo-1531058020387-3be344556be6?w=800&h=500&fit=crop" alt="conference people inside">
+        <div class="about__img-badge" data-lang-th="ก่อตั้ง 2016" data-lang-en="Est. 2016">ก่อตั้ง 2016</div>
+      </div>
+    </div>
+
+    <div>
+      <p class="section-label reveal" data-lang-th="เกี่ยวกับเรา" data-lang-en="About Us">เกี่ยวกับเรา</p>
+      <h2 class="section-h2 reveal">
+        <span data-lang-th="มากกว่า" data-lang-en="MORE THAN">มากกว่า</span><br>
+        <span class="accent" data-lang-th="8 ปีแห่ง" data-lang-en="8 YEARS OF">8 ปีแห่ง</span><br>
+        <span data-lang-th="ความเชี่ยวชาญ" data-lang-en="EXPERTISE">ความเชี่ยวชาญ</span>
+      </h2>
+      <p class="section-desc reveal" style="margin-bottom:2rem;" data-lang-th="เราคือทีมนักการตลาดและผู้เชี่ยวชาญด้านอีเวนต์ที่มีความหลงใหลในการสร้างประสบการณ์ที่ยิ่งใหญ่ให้กับแบรนด์และผู้บริโภค" data-lang-en="We are a team of marketers and event experts passionate about creating powerful experiences that connect brands with people.">เราคือทีมนักการตลาดและผู้เชี่ยวชาญด้านอีเวนต์ที่มีความหลงใหลในการสร้างประสบการณ์ที่ยิ่งใหญ่ให้กับแบรนด์และผู้บริโภค</p>
+
+      <div class="about__points">
+        <div class="about__point">
+          <div class="about__point-icon"><i data-lucide="shield-check" width="18" height="18"></i></div>
+          <div>
+            <div class="about__point-title" data-lang-th="ประสบการณ์ที่ได้รับการพิสูจน์" data-lang-en="Proven Track Record">ประสบการณ์ที่ได้รับการพิสูจน์</div>
+            <p class="about__point-text" data-lang-th="ผ่านงานมามากกว่า 200 โปรเจกต์ ทั้งงานเล็กและงานระดับชาติ" data-lang-en="Over 200 successful projects ranging from intimate events to national-scale campaigns.">ผ่านงานมามากกว่า 200 โปรเจกต์ ทั้งงานเล็กและงานระดับชาติ</p>
+          </div>
+        </div>
+        <div class="about__point">
+          <div class="about__point-icon"><i data-lucide="users" width="18" height="18"></i></div>
+          <div>
+            <div class="about__point-title" data-lang-th="ทีมงานผู้เชี่ยวชาญ 40 คน" data-lang-en="40-Person Expert Team">ทีมงานผู้เชี่ยวชาญ 40 คน</div>
+            <p class="about__point-text" data-lang-th="ทีมงานที่หลากหลายครอบคลุมทั้งด้านครีเอทีฟ ดิจิทัล และการจัดงาน" data-lang-en="A diverse team covering creative, digital strategy, production, and event operations.">ทีมงานที่หลากหลายครอบคลุมทั้งด้านครีเอทีฟ ดิจิทัล และการจัดงาน</p>
+          </div>
+        </div>
+        <div class="about__point">
+          <div class="about__point-icon"><i data-lucide="globe" width="18" height="18"></i></div>
+          <div>
+            <div class="about__point-title" data-lang-th="เครือข่ายพาร์ทเนอร์ทั่วไทย" data-lang-en="Nationwide Partner Network">เครือข่ายพาร์ทเนอร์ทั่วไทย</div>
+            <p class="about__point-text" data-lang-th="เครือข่ายพาร์ทเนอร์ด้าน venue, vendor และ influencer ที่ครอบคลุมทุกจังหวัด" data-lang-en="A network of vetted venues, vendors, and influencers covering every province in Thailand.">เครือข่ายพาร์ทเนอร์ด้าน venue, vendor และ influencer ที่ครอบคลุมทุกจังหวัด</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="reveal">
+    <p class="section-label" data-lang-th="เสียงจากลูกค้า" data-lang-en="Client Voices">เสียงจากลูกค้า</p>
+    <h2 class="section-h2">
+      <span data-lang-th="ลูกค้าพูดถึง" data-lang-en="WHAT CLIENTS">ลูกค้าพูดถึง</span>
+      <span class="accent" data-lang-th="เราอย่างไร" data-lang-en=" SAY"> เราอย่างไร</span>
+    </h2>
+  </div>
+
+  <div class="testi-track">
+    <div class="testi-card">
+      <div class="testi-quote">"</div>
+      <p class="testi-text" data-lang-th="Marketer Agency ช่วยให้งานเปิดตัวสินค้าของเราประสบความสำเร็จเกินความคาดหมาย ทีมงานมืออาชีพ ตรงเวลา และดูแลทุกรายละเอียดอย่างละเอียดถี่ถ้วน" data-lang-en="Marketer Agency made our product launch exceed every expectation. Professional, punctual, and attentive to every detail.">Marketer Agency ช่วยให้งานเปิดตัวสินค้าของเราประสบความสำเร็จเกินความคาดหมาย ทีมงานมืออาชีพ ตรงเวลา และดูแลทุกรายละเอียดอย่างละเอียดถี่ถ้วน</p>
+      <div class="testi-author">
+        <div class="testi-avatar"><img src="https://images.unsplash.com/photo-1557291557-6c63af566fe2?w=80&h=80&fit=crop&crop=face" alt="client avatar"></div>
+        <div>
+          <div class="testi-name">คุณสุทธิพงศ์ เจริญสุข</div>
+          <div class="testi-role" data-lang-th="CMO, TechCorp Thailand" data-lang-en="CMO, TechCorp Thailand">CMO, TechCorp Thailand</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testi-card">
+      <div class="testi-quote">"</div>
+      <p class="testi-text" data-lang-th="แคมเปญดิจิทัลที่พวกเขาออกแบบให้เราสร้าง engagement เพิ่มขึ้น 300% ภายในเดือนแรก ผลลัพธ์เกินความคาดหวังมาก" data-lang-en="The digital campaign they designed for us drove 300% more engagement in the first month alone. Results far beyond what we expected.">แคมเปญดิจิทัลที่พวกเขาออกแบบให้เราสร้าง engagement เพิ่มขึ้น 300% ภายในเดือนแรก ผลลัพธ์เกินความคาดหวังมาก</p>
+      <div class="testi-author">
+        <div class="testi-avatar"><img src="https://images.unsplash.com/photo-1610188794435-e263eb62a516?w=80&h=80&fit=crop&crop=face" alt="client avatar"></div>
+        <div>
+          <div class="testi-name">คุณพิมพ์ใจ วงศ์ทอง</div>
+          <div class="testi-role" data-lang-th="Marketing Director, BeautyBrand" data-lang-en="Marketing Director, BeautyBrand">Marketing Director, BeautyBrand</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testi-card">
+      <div class="testi-quote">"</div>
+      <p class="testi-text" data-lang-th="ตั้งแต่การวางแผนจนถึงวันงาน ทุกอย่างเป็นไปอย่างราบรื่น เราเป็นพาร์ทเนอร์กันมา 4 ปีแล้วและไม่เคยผิดหวัง" data-lang-en="From planning to event day, everything ran flawlessly. We've been partners for 4 years and have never been disappointed.">ตั้งแต่การวางแผนจนถึงวันงาน ทุกอย่างเป็นไปอย่างราบรื่น เราเป็นพาร์ทเนอร์กันมา 4 ปีแล้วและไม่เคยผิดหวัง</p>
+      <div class="testi-author">
+        <div class="testi-avatar"><img src="https://images.unsplash.com/photo-1623122245120-7eef6faa39c6?w=80&h=80&fit=crop&crop=face" alt="client avatar"></div>
+        <div>
+          <div class="testi-name">คุณณัฐวุฒิ อาริยะ</div>
+          <div class="testi-role" data-lang-th="CEO, Lifestyle Group" data-lang-en="CEO, Lifestyle Group">CEO, Lifestyle Group</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testi-card">
+      <div class="testi-quote">"</div>
+      <p class="testi-text" data-lang-th="ทีม Marketer Agency เข้าใจธุรกิจเราและนำเสนอไอเดียที่ไม่ซ้ำใคร ผลลัพธ์ที่ได้ทำให้แบรนด์เราเป็นที่รู้จักในระดับประเทศ" data-lang-en="The Marketer Agency team understood our business and delivered truly original ideas. The results put our brand on the national map.">ทีม Marketer Agency เข้าใจธุรกิจเราและนำเสนอไอเดียที่ไม่ซ้ำใคร ผลลัพธ์ที่ได้ทำให้แบรนด์เราเป็นที่รู้จักในระดับประเทศ</p>
+      <div class="testi-author">
+        <div class="testi-avatar"><img src="https://images.unsplash.com/photo-1576085898323-218337e3e43c?w=80&h=80&fit=crop&crop=face" alt="client avatar"></div>
+        <div>
+          <div class="testi-name">คุณรัตนา พัฒนากิจ</div>
+          <div class="testi-role" data-lang-th="Brand Manager, FoodTech Co." data-lang-en="Brand Manager, FoodTech Co.">Brand Manager, FoodTech Co.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<div class="clients">
+  <p class="clients__label" data-lang-th="แบรนด์ที่ไว้วางใจเรา" data-lang-en="Brands That Trust Us">แบรนด์ที่ไว้วางใจเรา</p>
+  <div class="clients__logos">
+    <span class="client-logo">TechCorp</span>
+    <span class="client-logo">BeautyBrand</span>
+    <span class="client-logo">FoodTech</span>
+    <span class="client-logo">AutoGroup</span>
+    <span class="client-logo">RetailMax</span>
+    <span class="client-logo">FinServ</span>
+    <span class="client-logo">MedPlus</span>
+    <span class="client-logo">EduWorld</span>
+  </div>
+</div>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <h2 class="cta-band__h2" data-lang-th="พร้อมยกระดับแบรนด์ของคุณแล้วหรือยัง?" data-lang-en="Ready to Elevate Your Brand?">พร้อมยกระดับแบรนด์ของคุณแล้วหรือยัง?</h2>
+  <p class="cta-band__sub" data-lang-th="ปรึกษาทีมงานของเราฟรี ไม่มีข้อผูกมัด" data-lang-en="Talk to our team for free — no commitment required.">ปรึกษาทีมงานของเราฟรี ไม่มีข้อผูกมัด</p>
+  <a href="#contact" class="btn-dark">
+    <i data-lucide="arrow-right" width="16" height="16"></i>
+    <span data-lang-th="เริ่มต้นเลย" data-lang-en="Start Now">เริ่มต้นเลย</span>
+  </a>
+</div>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="reveal">
+    <p class="section-label" data-lang-th="ติดต่อเรา" data-lang-en="Contact">ติดต่อเรา</p>
+    <h2 class="section-h2">
+      <span data-lang-th="มาสร้างสิ่ง" data-lang-en="LET'S BUILD">มาสร้างสิ่ง</span>
+      <span class="accent" data-lang-th="ยิ่งใหญ่ด้วยกัน" data-lang-en=" SOMETHING"> ยิ่งใหญ่ด้วยกัน</span>
+    </h2>
+  </div>
+
+  <div class="contact__grid">
+    <div class="contact__info">
+      <div class="contact__item">
+        <div class="contact__item-icon"><i data-lucide="map-pin" width="18" height="18"></i></div>
+        <div>
+          <div class="contact__item-label" data-lang-th="ที่อยู่" data-lang-en="Address">ที่อยู่</div>
+          <div class="contact__item-value" data-lang-th="888 อาคารสาทรสแควร์ ชั้น 12 ถนนสาทรใต้ กรุงเทพฯ 10120" data-lang-en="888 Sathorn Square Tower, 12th Floor, South Sathorn Rd, Bangkok 10120">888 อาคารสาทรสแควร์ ชั้น 12 ถนนสาทรใต้ กรุงเทพฯ 10120</div>
+        </div>
+      </div>
+      <div class="contact__item">
+        <div class="contact__item-icon"><i data-lucide="phone" width="18" height="18"></i></div>
+        <div>
+          <div class="contact__item-label" data-lang-th="โทรศัพท์" data-lang-en="Phone">โทรศัพท์</div>
+          <div class="contact__item-value">+66 2 000 0000</div>
+        </div>
+      </div>
+      <div class="contact__item">
+        <div class="contact__item-icon"><i data-lucide="mail" width="18" height="18"></i></div>
+        <div>
+          <div class="contact__item-label" data-lang-th="อีเมล" data-lang-en="Email">อีเมล</div>
+          <div class="contact__item-value">hello@marketeragency.co.th</div>
+        </div>
+      </div>
+      <div class="contact__item">
+        <div class="contact__item-icon"><i data-lucide="clock" width="18" height="18"></i></div>
+        <div>
+          <div class="contact__item-label" data-lang-th="เวลาทำการ" data-lang-en="Office Hours">เวลาทำการ</div>
+          <div class="contact__item-value" data-lang-th="จันทร์–ศุกร์ 9:00–18:00 น." data-lang-en="Mon–Fri 9:00–18:00">จันทร์–ศุกร์ 9:00–18:00 น.</div>
+        </div>
+      </div>
+    </div>
+
+    <form class="contact__form" onsubmit="handleSubmit(event)">
+      <div class="form-group">
+        <label class="form-label" data-lang-th="ชื่อ-นามสกุล" data-lang-en="Full Name">ชื่อ-นามสกุล</label>
+        <input type="text" class="form-input" placeholder="" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" data-lang-th="อีเมล" data-lang-en="Email">อีเมล</label>
+        <input type="email" class="form-input" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" data-lang-th="ประเภทบริการที่สนใจ" data-lang-en="Service of Interest">ประเภทบริการที่สนใจ</label>
+        <select class="form-select">
+          <option data-lang-th="-- เลือกบริการ --" data-lang-en="-- Select Service --">-- เลือกบริการ --</option>
+          <option data-lang-th="จัดงานอีเวนต์" data-lang-en="Event Management">จัดงานอีเวนต์</option>
+          <option data-lang-th="การตลาดออนไลน์" data-lang-en="Digital Marketing">การตลาดออนไลน์</option>
+          <option data-lang-th="Brand Activation" data-lang-en="Brand Activation">Brand Activation</option>
+          <option data-lang-th="ผลิตคอนเทนต์" data-lang-en="Content Production">ผลิตคอนเทนต์</option>
+          <option data-lang-th="อื่นๆ" data-lang-en="Other">อื่นๆ</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label" data-lang-th="รายละเอียดเพิ่มเติม" data-lang-en="Additional Details">รายละเอียดเพิ่มเติม</label>
+        <textarea class="form-textarea"></textarea>
+      </div>
+      <button type="submit" class="btn-primary" style="width:100%;justify-content:center;">
+        <i data-lucide="send" width="16" height="16"></i>
+        <span data-lang-th="ส่งข้อความ" data-lang-en="Send Message">ส่งข้อความ</span>
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer__top">
+    <div>
+      <div class="footer__logo">MARKETER<span>.</span></div>
+      <p class="footer__tagline" data-lang-th="บริษัทรับจัดงานและการตลาดครบวงจร" data-lang-en="Full-Service Event & Marketing Agency">บริษัทรับจัดงานและการตลาดครบวงจร</p>
+      <div class="footer__social" style="margin-top:1.25rem;">
+        <a href="#" aria-label="Facebook"><i data-lucide="facebook" width="16" height="16"></i></a>
+        <a href="#" aria-label="Instagram"><i data-lucide="instagram" width="16" height="16"></i></a>
+        <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin" width="16" height="16"></i></a>
+        <a href="#" aria-label="YouTube"><i data-lucide="youtube" width="16" height="16"></i></a>
+      </div>
+    </div>
+    <div>
+      <div class="footer__nav-title" data-lang-th="บริการ" data-lang-en="Services">บริการ</div>
+      <ul class="footer__nav-list">
+        <li><a href="#services" data-lang-th="จัดงานอีเวนต์" data-lang-en="Event Management">จัดงานอีเวนต์</a></li>
+        <li><a href="#services" data-lang-th="การตลาดออนไลน์" data-lang-en="Digital Marketing">การตลาดออนไลน์</a></li>
+        <li><a href="#services" data-lang-th="Brand Activation" data-lang-en="Brand Activation">Brand Activation</a></li>
+        <li><a href="#services" data-lang-th="ผลิตคอนเทนต์" data-lang-en="Content Production">ผลิตคอนเทนต์</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer__nav-title" data-lang-th="บริษัท" data-lang-en="Company">บริษัท</div>
+      <ul class="footer__nav-list">
+        <li><a href="#about" data-lang-th="เกี่ยวกับเรา" data-lang-en="About Us">เกี่ยวกับเรา</a></li>
+        <li><a href="#work" data-lang-th="ผลงาน" data-lang-en="Our Work">ผลงาน</a></li>
+        <li><a href="#testimonials" data-lang-th="รีวิวลูกค้า" data-lang-en="Testimonials">รีวิวลูกค้า</a></li>
+        <li><a href="#contact" data-lang-th="ร่วมงานกับเรา" data-lang-en="Careers">ร่วมงานกับเรา</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer__nav-title" data-lang-th="ติดต่อ" data-lang-en="Contact">ติดต่อ</div>
+      <ul class="footer__nav-list">
+        <li><a href="tel:+6620000000">+66 2 000 0000</a></li>
+        <li><a href="mailto:hello@marketeragency.co.th">hello@marketeragency.co.th</a></li>
+        <li><a href="#contact" data-lang-th="ส่งข้อความ" data-lang-en="Send Message">ส่งข้อความ</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <p class="footer__copy" data-lang-th="© 2024 Marketer Agency Co., Ltd. สงวนลิขสิทธิ์" data-lang-en="© 2024 Marketer Agency Co., Ltd. All rights reserved.">© 2024 Marketer Agency Co., Ltd. สงวนลิขสิทธิ์</p>
+    <p class="footer__copy" data-lang-th="นโยบายความเป็นส่วนตัว · ข้อกำหนดการใช้งาน" data-lang-en="Privacy Policy · Terms of Use">นโยบายความเป็นส่วนตัว · ข้อกำหนดการใช้งาน</p>
+  </div>
+</footer>
+
+<script>
+// ─── NAVBAR SCROLL ───
+(function(){
+  var nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', function(){
+    if(window.scrollY > 40){ nav.classList.add('scrolled'); }
+    else { nav.classList.remove('scrolled'); }
+  }, {passive:true});
+})();
+
+// ─── MOBILE MENU ───
+(function(){
+  var burger = document.getElementById('burgerBtn');
+  var menu = document.getElementById('mobileMenu');
+  var overlay = document.getElementById('navOverlay');
+  var close = document.getElementById('menuClose');
+  function openMenu(){ menu.classList.add('open'); overlay.classList.add('open'); document.body.style.overflow='hidden'; }
+  function closeMenu(){ menu.classList.remove('open'); overlay.classList.remove('open'); document.body.style.overflow=''; }
+  burger.addEventListener('click', openMenu);
+  close.addEventListener('click', closeMenu);
+  overlay.addEventListener('click', closeMenu);
+  menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeMenu); });
+})();
+
+// ─── INTERSECTION OBSERVER ───
+(function(){
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, {threshold: 0.12, rootMargin: '0px 0px -40px 0px'});
+
+  document.querySelectorAll('.reveal, .step, .work-item, .about__point, .testi-card').forEach(function(el, i){
+    el.style.transitionDelay = (i % 4) * 0.08 + 's';
+    io.observe(el);
+  });
+})();
+
+// ─── HORIZONTAL DRAG SCROLL ───
+(function(){
+  var track = document.getElementById('serviceTrack');
+  var isDragging = false, startX, scrollLeft;
+  track.addEventListener('mousedown', function(e){ isDragging=true; startX=e.pageX-track.offsetLeft; scrollLeft=track.scrollLeft; });
+  document.addEventListener('mouseup', function(){ isDragging=false; });
+  track.addEventListener('mousemove', function(e){ if(!isDragging)return; e.preventDefault(); var x=e.pageX-track.offsetLeft; track.scrollLeft=scrollLeft-(x-startX); });
+})();
+
+// ─── FORM HANDLER ───
+function handleSubmit(e){
+  e.preventDefault();
+  var btn = e.target.querySelector('button[type=submit]');
+  var lang = document.documentElement.lang;
+  btn.textContent = lang==='th' ? 'ส่งแล้ว!' : 'Sent!';
+  btn.style.background = '#22c55e';
+  setTimeout(function(){ btn.textContent=lang==='th'?'ส่งข้อความ':'Send Message'; btn.style.background=''; }, 3000);
+}
+
+// ─── LUCIDE ICONS ───
+lucide.createIcons();
+
+// ─── LANG SWITCHER (provided) ───
+(function(){var K='site-lang',L=localStorage.getItem(K)||'th';function S(l){L=l;localStorage.setItem(K,l);document.documentElement.lang=l;document.querySelectorAll('[data-lang-th]').forEach(function(e){var t=e.getAttribute('data-lang-'+l);if(t!==null){e.textContent=t}});var lb=document.querySelector('.lang-sw__label');if(lb){lb.textContent=l.toUpperCase()}}var sw=document.querySelector('.lang-sw');if(sw){sw.addEventListener('click',function(){S(L==='th'?'en':'th')});sw.style.cursor='pointer'}if(L!=='th'){S(L)}})();
+</script>
+</body>
+</html>
