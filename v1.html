@@ -1114,6 +1114,16 @@
     letter-spacing: 0.04em;
   }
 
+  /* On mobile the full-height hero pushes its content (flex-end) up under
+     the ticker, colliding the tag with it. Flow content from the top with
+     enough padding to clear the nav + ticker bar instead. */
+  @media (max-width: 767px) {
+    .hero {
+      justify-content: flex-start;
+      padding-top: 8.5rem;
+    }
+  }
+
   /* ─── DESKTOP ─── */
   @media (min-width: 768px) {
     section { padding: 7rem 3rem; }
