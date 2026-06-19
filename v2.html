@@ -295,7 +295,7 @@ nav.scrolled{
   position:absolute;
   bottom:2rem;right:1.5rem;
   z-index:2;
-  display:flex;
+  display:none;
   flex-direction:column;
   align-items:center;
   gap:0.5rem;
@@ -310,11 +310,12 @@ nav.scrolled{
   50%{transform:translateY(6px)}
 }
 .hero-stat-row{
-  position:absolute;
-  bottom:2rem;left:1.5rem;
+  position:relative;
   z-index:2;
   display:flex;
+  flex-wrap:wrap;
   gap:2rem;
+  margin-top:2.5rem;
 }
 .hero-stat-num{
   font-family:var(--font-display);
@@ -333,8 +334,8 @@ nav.scrolled{
 
 @media(min-width:768px){
   #hero{padding:9rem 4rem 5rem}
-  .hero-stat-row{left:4rem;gap:3rem}
-  .hero-scroll{right:4rem}
+  .hero-stat-row{gap:3rem}
+  .hero-scroll{display:flex;right:4rem}
 }
 
 /* ===== TICKER ===== */
