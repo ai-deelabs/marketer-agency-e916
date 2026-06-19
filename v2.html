@@ -332,6 +332,13 @@ nav.scrolled{
   line-height:1.5;
 }
 
+/* English headline runs longer than Thai, so it hits the clamp ceiling
+   and reads oversized on small screens — scale it down for en only */
+@media(max-width:767px){
+  html[lang="en"] .hero-h1{font-size:2.2rem;line-height:1.12}
+  html[lang="en"] .hero-sub{font-size:1rem;line-height:1.65}
+}
+
 @media(min-width:768px){
   #hero{padding:9rem 4rem 5rem}
   .hero-stat-row{gap:3rem}
